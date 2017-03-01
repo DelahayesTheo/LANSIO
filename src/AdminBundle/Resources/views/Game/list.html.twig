@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    {% include 'AdminBundle:component:sideMenu.html.twig' %}
+    <h3>Liste des jeux :</h3>
+            <div class="col-lg-offset-1 col-lg-10">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <td>Nom</td>
+                    <td>Genre</td>
+                    <td>Platforme</td>
+                    <td>Nombre max de joueurs</td>
+                    </thead>
+
+                    {% for game in games %}
+                        <tr>
+                            <td>{{ game.name }}</td>
+                            <td>{{ game.kind }}</td>
+                            <td>{{ game.platform }}</td>
+                            <td>
+                               {{ game.nbMaxPlayer }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+{% endblock %}

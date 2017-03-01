@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    {% block stylesheet %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}" />
+    {% endblock %}
+    <div class="container">
+        <div class="row">
+            <div id="index">
+                <div class="panel panel-default">
+                    <div class="panel-body black">
+                        <h2 class="center">Bienvenue sur le site de la LAN des SIO</h2>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('admin_dashboard') }}" class="center btn btn-primary">Accéder au site</a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}" class="center btn btn-primary">Se connecter</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

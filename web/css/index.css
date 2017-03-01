@@ -1,0 +1,30 @@
+body {
+    background: url('../img/bioshock.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.panel-default {
+    opacity : 0.9;
+    border: 0px !important;
+}
+#index {
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    height: 400px;
+    margin-top: -200px;
+    margin-left: -250px;
+}
+
+.black {
+    background-color: #2c3035;
+    color : white;
+}
+.center {
+    text-align : center;
+    display:block;
+}

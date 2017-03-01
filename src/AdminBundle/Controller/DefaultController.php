@@ -15,6 +15,15 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('AdminBundle:Default:index.html.twig');
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+
+        $UserRepository = $em->getRepository("UserBundle:User");
+        $users = $UserRepository->findAllUserOrderByName();
+
+        return $this->render('AdminBundle:Default:index.html.twig', array(
+            "users" => $users
+        ));
     }
 }

@@ -1,0 +1,46 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% include 'AdminBundle:component:sideMenu.html.twig' %}
+        <h3>Ajouter un jeu :</h3>
+        <form class="form-horizontal" method="post" role="form">
+            <div class="form-group">
+                <div class="control-label col-sm-3">
+                {{ form_label(form.name, 'Nom du jeu') }}
+            </div>
+                <div class="col-sm-9">
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-sm-3">
+                {{ form_label(form.platform, 'Plateforme') }}
+            </div>
+                <div class="col-sm-9">
+                    {{ form_widget(form.platform) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-sm-3">
+                {{ form_label(form.nbMaxPlayer, 'Nombre maximum de joueur') }}
+            </div>
+                <div class="col-sm-9">
+                    {{ form_widget(form.nbMaxPlayer) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-sm-3">
+                {{ form_label(form.kind, 'Genre du jeu') }}
+                </div>
+                <div class="col-sm-9">
+                    {{ form_widget(form.kind) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9 ">
+                    {{ form_widget(form.save, {'attr': {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
+                </div>
+            </div>
+            {{ form_rest(form) }}
+        </form> <!-- /form -->
+{% endblock %}

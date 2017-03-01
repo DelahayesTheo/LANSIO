@@ -1,5 +1,12 @@
 .content {
-    margin-left: 11%;
+    margin-left: 12%;
+    padding-top: 4%;
+    width : 86%;
+    margin-top : 2%;
+}
+
+.table {
+    border : 1px solid #DDDDDD !important;
 }
 
 .sideMenu {
@@ -10,6 +17,14 @@
     top: 0;
     left: 0;
     width : 10%;
+}
+.enteteMenu{
+    color : #2e6da4;
+    font-size : 16px;
+    font-weight : 800;
+    background-color : #13161c;
+    padding : 20px 0 20px 0;
+    text-align : center;
 }
 .sideMenu ul {
     padding: 0;
@@ -29,4 +44,7 @@
 }
 .sideMenu li:hover {
     background-color : grey;
+}
+.sideMenu a:active{
+    color : #2e6da4;
 }
