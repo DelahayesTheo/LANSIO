@@ -22,7 +22,7 @@ class Game
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\ManyToMany(targetEntity="Platform")
      */
     private $platform;
 

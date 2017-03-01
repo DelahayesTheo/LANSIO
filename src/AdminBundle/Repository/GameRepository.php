@@ -1,5 +1,4 @@
 <?php
-// src/AppBundle/Repository/ProductRepository.php
 namespace AdminBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;

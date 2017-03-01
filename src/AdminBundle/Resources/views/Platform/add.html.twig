@@ -1,0 +1,33 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% include 'AdminBundle:component:sideMenu.html.twig' %}
+    <h3>Ajouter une plateforme :</h3>
+    {% if successMessage is not empty %}
+        <div class="alert alert-success" role="alert">{{ successMessage }}</div>
+        {% endif %}
+        <form class="form-horizontal" method="post" role="form">
+            <div class="form-group">
+                <div class="control-label col-sm-3">
+                    {{ form_label(form.code, 'Code') }}
+                </div>
+                <div class="col-sm-9">
+                    {{ form_widget(form.code) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-sm-3">
+                    {{ form_label(form.wording, 'Libelle') }}
+                </div>
+                <div class="col-sm-9">
+                    {{ form_widget(form.wording) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9 ">
+                    {{ form_widget(form.save, {'attr': {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
+                </div>
+            </div>
+            {{ form_rest(form) }}
+        </form> <!-- /form -->
+        {% endblock %}

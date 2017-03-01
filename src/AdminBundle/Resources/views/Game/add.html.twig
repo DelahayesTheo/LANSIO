@@ -2,35 +2,42 @@
 
 {% block body %}
     {% include 'AdminBundle:component:sideMenu.html.twig' %}
-        <h3>Ajouter un jeu :</h3>
+    <h3>Ajouter un jeu :</h3>
+        {% if successMessage is not empty %}
+        <div class="alert alert-success" role="alert">{{ successMessage }}</div>
+        {% endif %}
         <form class="form-horizontal" method="post" role="form">
             <div class="form-group">
                 <div class="control-label col-sm-3">
-                {{ form_label(form.name, 'Nom du jeu') }}
-            </div>
+                    {{ form_label(form.name, 'Nom du jeu') }}
+                </div>
                 <div class="col-sm-9">
                     {{ form_widget(form.name) }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="control-label col-sm-3">
-                {{ form_label(form.platform, 'Plateforme') }}
-            </div>
+                    {{ form_label(form.platform, 'Plateforme') }}
+                </div>
                 <div class="col-sm-9">
-                    {{ form_widget(form.platform) }}
+                    <div class="col-sm-6">
+                        {% for choice in form.platform %}
+                            {{ form_widget(choice) }}&nbsp {{ form_label(choice) }} &nbsp &nbsp
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="control-label col-sm-3">
-                {{ form_label(form.nbMaxPlayer, 'Nombre maximum de joueur') }}
-            </div>
+                    {{ form_label(form.nbMaxPlayer, 'Nombre maximum de joueur') }}
+                </div>
                 <div class="col-sm-9">
                     {{ form_widget(form.nbMaxPlayer) }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="control-label col-sm-3">
-                {{ form_label(form.kind, 'Genre du jeu') }}
+                    {{ form_label(form.kind, 'Genre du jeu') }}
                 </div>
                 <div class="col-sm-9">
                     {{ form_widget(form.kind) }}
@@ -43,4 +50,4 @@
             </div>
             {{ form_rest(form) }}
         </form> <!-- /form -->
-{% endblock %}
+        {% endblock %}

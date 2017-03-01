@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    {% include 'AdminBundle:component:sideMenu.html.twig' %}
+    <h3>Liste des plateformes :</h3>
+    <div class="col-lg-offset-1 col-lg-10">
+        <table class="table table-hover table-striped">
+            <thead>
+            <td>Code</td>
+            <td>Libelle</td>
+            </thead>
+
+            {% for platform in platforms %}
+                <tr>
+                    <td>{{ platform.code }}</td>
+                    <td>{{ platform.wording }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
