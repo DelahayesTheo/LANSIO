@@ -5,10 +5,11 @@
             <div class="col-lg-offset-1 col-lg-10">
                 <table class="table table-hover table-striped">
                     <thead>
-                    <td>Nom</td>
-                    <td>Genre</td>
-                    <td>Platforme</td>
-                    <td>Nombre max de joueurs</td>
+                    <td><b>Nom</b></td>
+                    <td><b>Genre</b></td>
+                    <td><b>Platforme</b></td>
+                    <td><b>Nombre max de joueurs</b></td>
+                    <td><b>Actions</b></td>
                     </thead>
 
                     {% for game in games %}
@@ -19,6 +20,7 @@
                             <td>
                                {{ game.nbMaxPlayer }}
                             </td>
+                            <td><a href="{{ path('admin_modify_game', {'game' : game.id}) }}" class="btn btn-primary">Modifier</a></td>
                         </tr>
                     {% endfor %}
                 </table>
