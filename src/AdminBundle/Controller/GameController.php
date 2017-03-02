@@ -77,17 +77,7 @@ class GameController extends Controller
         $gameRepository = $em->getRepository("AdminBundle:Game");
 
         $games = $gameRepository->findAllGamesOrderByName();
-        $roles = array();
 
-        foreach ($this->container->getParameter('security.role_hierarchy.roles') as $name => $rolesHierarchy) {
-            $roles[$name] = $name;
-
-            foreach ($rolesHierarchy as $role) {
-                if (!isset($roles[$role])) {
-                    $roles[$role] = $role;
-                }
-            }
-        }
         return $this->render('AdminBundle:Game:list.html.twig', array(
             'games' => $games,
         ));
@@ -152,7 +142,7 @@ class GameController extends Controller
      *     name="admin_list_platform")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function listPlatformAction(Request $request)
+    public function listPlatformAction()
     {
         $em = $this
             ->getDoctrine()
@@ -163,5 +153,22 @@ class GameController extends Controller
         return $this->render('AdminBundle:Platform:list.html.twig', array(
             'platforms' => $platforms
         ));
+    }
+
+    /**
+     * @Route("/supprimer-jeu/{game}",
+     *     name="admin_delete_game",
+     *     options={"expose"=true})
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function deleteGameAction(Request $request, Game $game)
+    {
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $em->remove($game);
+        $em->flush();
+
+        return $this->redirectToRoute("admin_list_game");
     }
 }

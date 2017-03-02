@@ -1,3 +1,8 @@
+participant:
+    resource: "@ParticipantBundle/Controller/"
+    type:     annotation
+    prefix:   /participant
+
 admin:
     resource: "@AdminBundle/Controller/"
     type:     annotation
@@ -29,4 +34,7 @@ fos_user_resetting:
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /profile
+    prefix: /profile7
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

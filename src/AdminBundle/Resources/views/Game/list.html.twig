@@ -13,14 +13,22 @@
                     </thead>
 
                     {% for game in games %}
-                        <tr>
+                        <tr id="game-{{ game.id }}">
                             <td>{{ game.name }}</td>
                             <td>{{ game.kind }}</td>
                             <td>{% for platform in game.platform %} [{{ platform.wording }}] {% endfor %}</td>
                             <td>
                                {{ game.nbMaxPlayer }}
                             </td>
-                            <td><a href="{{ path('admin_modify_game', {'game' : game.id}) }}" class="btn btn-primary">Modifier</a></td>
+                            <td><div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li><a href="{{ path("admin_modify_game", { 'game' : game.id }) }}"  class="dropdown-item">Modifier</a></li>
+                                        <li> <a href="#" onclick="alertOnDelete('ADMIN_GAME', {{ game.id }})"class="dropdown-item">Supprimer</a></li>
+                                    </div>
+                                </div></td>
                         </tr>
                     {% endfor %}
                 </table>

@@ -11,6 +11,8 @@
                         <h2 class="center">Bienvenue sur le site de la LAN des SIO</h2>
                         {% if is_granted('ROLE_ADMIN') %}
                             <a href="{{ path('admin_dashboard') }}" class="center btn btn-primary">Accéder au site</a>
+                        {% elseif is_granted('ROLE_USER') %}
+                            <a href="{{ path('participant_dashboard') }}" class="center btn btn-primary">Accéder au site</a>
                         {% else %}
                             <a href="{{ path('fos_user_security_login') }}" class="center btn btn-primary">Se connecter</a>
                         {% endif %}
