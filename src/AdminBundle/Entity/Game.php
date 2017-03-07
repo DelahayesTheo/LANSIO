@@ -2,6 +2,7 @@
 
 namespace AdminBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="AdminBundle\Repository\GameRepository")
@@ -35,6 +36,31 @@ class Game
      * @ORM\Column(type="string", length=20)
      */
     private $kind;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="UserBundle/Entity/User", mappedBy="gamesPlayed")
+     */
+    private $usersPlaying;
+    public function __construct()
+    {
+        $this->usersPlaying = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsersPlaying()
+    {
+        return $this->usersPlaying;
+    }
+
+    /**
+     * @param mixed $usersPlaying
+     */
+    public function setUsersPlaying($usersPlaying)
+    {
+        $this->usersPlaying->add($usersPlaying);
+    }
 
     /**
      * @return mixed

@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <h3>Info obligatoire :</h3>
+    <form class="form-horizontal" method="post" role="form">
+        <div class="form-group">
+            <div class="control-label col-sm-3">
+                {{ form_label(form.isComing, 'Je viens à la LAN') }}
+            </div>
+            <div class="col-sm-9">
+                {{ form_widget(form.isComing) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-sm-3">
+                {{ form_label(form.isEating, 'Je commande une pizza à la LAN') }}
+            </div>
+            <div class="col-sm-9">
+                <div class="col-sm-6">
+                    {{ form_widget(form.isEating) }}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-sm-3">
+                {{ form_label(form.needScreen, 'J\ai besoin qu\'on me prête un écran') }}
+            </div>
+            <div class="col-sm-9">
+                {{ form_widget(form.needScreen) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9 ">
+                {{ form_widget(form.save, {'attr': {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
+            </div>
+        </div>
+        {{ form_rest(form) }}
+    </form> <!-- /form -->
+{% endblock %}

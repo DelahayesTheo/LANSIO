@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+    <div class="well">
+        {% if notAnsweredRequests is not empty %}
+            {% for inProgress in notAnsweredRequests %}
+                <p>{{ inProgress.name }} - {{ inProgress.kind }}</p>
+            {% endfor %}
+        {% else %}
+            <p>Pas de requetes non résolues</p>
+        {% endif %}
+    </div>
+    <div class="well">
+        {% if answeredRequests is not empty %}
+            {% for inProgress in answeredRequests %}
+                <p>{{ inProgress.name }} - {{ inProgress.kind }} - {% if inProgress.status == -1 %}Rejeter {% elseif inProgress.status == 1 %} Accepter {% endif %}</p>
+            {% endfor %}
+            {% else %}
+            <p>Pas de requetes résolues</p>
+        {% endif %}
+    </div>
+{% endblock %}
