@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class EquipmentTypeRepository extends EntityRepository
 {
+    public function queryFindAllEquipmentType()
+    {
+        $em = $this
+            ->getEntityManager();
+
+        $query = $em ->createQueryBuilder()
+            ->select('et')
+            ->from('AdminBundle:EquipmentType', 'et');
+
+        return $query;
+    }
 }

@@ -1,7 +1,8 @@
 <?php
 namespace ParticipantBundle\Form\Type;
 
-use ParticipantBundle\Entity\requestAdminGame;
+use AdminBundle\Repository\EquipmentRepository;
+use ParticipantBundle\Entity\bringedEquipment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,23 +15,22 @@ use AdminBundle\Repository\PlatformRepository;
 
 
 
-class requestAdminGameType extends AbstractType
+class bringedEquipmentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('platform', EntityType::class, array(
-                    'class' => 'AdminBundle:Platform',
-                    'query_builder' => function(PlatformRepository $er) {
-                        return $er->queryFindAllPlatformOrderByName();
+            ->add('quantity', TextType::class)
+            ->add('equipment', EntityType::class, array(
+                    'class' => 'AdminBundle:Equipment',
+                    'query_builder' => function(EquipmentRepository $er) {
+                        return $er->queryFindAllEquipment();
                     },
-                    'choice_label' => 'wording',
-                    'choice_value' => 'id'
+                    'choice_label' => 'equipmentType',
+                    'choice_value' => 'id',
+                    'group_by'=> 'platform'
                 )
             )
-            ->add('nbMaxPlayer', IntegerType::class)
-            ->add('kind', TextType::class)
             ->add('save', SubmitType::class, array('label' => 'Create Post'))
             ->getForm();
     }
@@ -38,7 +38,7 @@ class requestAdminGameType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => requestAdminGame::class,
+            'data_class' => bringedEquipment::class,
         ));
     }
 }

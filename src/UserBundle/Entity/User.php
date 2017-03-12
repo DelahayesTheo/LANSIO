@@ -55,6 +55,28 @@ class User extends BaseUser
     protected $needMouse;
 
     /**
+     * @ORM\OneToMany(targetEntity="ParticipantBundle\Entity\bringedEquipment", mappedBy="user")
+     */
+    protected $bringedEquipment;
+
+    /**
+     * @return mixed
+     */
+    public function getBringedEquipment()
+    {
+        return $this->bringedEquipment;
+    }
+
+    /**
+     * @param mixed $bringedEquipment
+     */
+    public function setBringedEquipment($bringedEquipment)
+    {
+        $bringedEquipment->addUser($this);
+        $this->bringedEquipment->add($bringedEquipment);
+    }
+
+    /**
      * @return mixed
      */
     public function getNeedNetworkCable()
@@ -220,6 +242,7 @@ class User extends BaseUser
 
     public function __construct()
     {
+        $this->bringedEquipment = new ArrayCollection();
         $this->gamesPlayed = new ArrayCollection();
         parent::__construct();
         // your own logic

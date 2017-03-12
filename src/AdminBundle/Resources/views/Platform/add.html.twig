@@ -1,33 +1,46 @@
 {% extends '::base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}" />
+{% endblock %}
 {% block body %}
-    {% include 'AdminBundle:component:sideMenu.html.twig' %}
-    <h3>Ajouter une plateforme :</h3>
-    {% if successMessage is not empty %}
-        <div class="alert alert-success" role="alert">{{ successMessage }}</div>
-    {% endif %}
-    <form class="form-horizontal" method="post" role="form">
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.code, 'Code') }}
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.code) }}
-            </div>
+    {% include 'AdminBundle:component:topNavbar.html.twig' %}
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'AdminBundle:component:sideMenu.html.twig' %}
+
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                <h1>Ajouter une plateforme :</h1>
+
+                <section class="mx-auto row text-center">
+                    {% if successMessage is not empty %}
+                        <div class="alert alert-success" role="alert">{{ successMessage }}</div>
+                    {% endif %}
+                    <form class="form-horizontal" method="post" role="form">
+                        <div class="form-group">
+                            <div class="control-label col-sm-3">
+                                {{ form_label(form.code, 'Code') }}
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.code) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-sm-3">
+                                {{ form_label(form.wording, 'Libelle') }}
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.wording) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9 ">
+                                {{ form_widget(form.save, {'attr': {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
+                            </div>
+                        </div>
+                        {{ form_rest(form) }}
+                    </form> <!-- /form -->
+                </section>
+            </main>
         </div>
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.wording, 'Libelle') }}
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.wording) }}
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9 ">
-                {{ form_widget(form.save, {'attr': {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
-            </div>
-        </div>
-        {{ form_rest(form) }}
-    </form> <!-- /form -->
+    </div>
 {% endblock %}

@@ -33,7 +33,4 @@
     {% for message in app.session.flashbag.get('notice') %}
         $.notify("{{ message }}", "success");
     {% endfor %}
-    {% if app.session.flashbag.get('notice') is not empty %}
-        emptyGameRequestFields();
-    {% endif %}
 {% endblock %}

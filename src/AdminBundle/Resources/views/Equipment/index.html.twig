@@ -1,0 +1,74 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}" />
+{% endblock %}
+{% block body %}
+    {% include 'AdminBundle:component:topNavbar.html.twig' %}
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'AdminBundle:component:sideMenu.html.twig' %}
+
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h1>Liste des Equipements :</h1>
+
+                        <section class="mx-auto row text-center">
+                             {% if equipments is not empty %}
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                <td><b>Plateforme</b></td>
+                                <td><b>Type Equipment</b></td>
+                                </thead>
+
+                                {% for equipment in equipments %}
+                                    <tr>
+                                        <td>{{ equipment.platform.wording }}</td>
+                                        <td>{{ equipment.equipmentType.wording }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        {% else %}
+                            <h2>Il n'y a pas encore d'équipements enregistrés</h2>
+                            {% endif %}
+                        </section>
+                    </div>
+                    <div class="col-sm-6">
+                        <h1>Ajouter un Equipement :</h1>
+                        <section class="mx-auto row text-center">
+                            <form class="form-horizontal" method="post" role="form">
+                                <div class="form-group">
+                                    <div class="control-label col-sm-4">
+                                        {{ form_label(form.platform, 'Plateforme') }}
+                                    </div>
+                                    <div class="col-sm-8">
+                                        {{ form_widget(form.platform) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="control-label col-sm-4">
+                                        {{ form_label(form.equipmentType, 'Type d\'équipement') }}
+                                    </div>
+                                    <div class="col-sm-8">
+                                        {{ form_widget(form.equipmentType) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12 ">
+                                        {{ form_widget(form.save, {'attr': {'class' : 'btn btn-primary text-center'}, 'label' : 'Valider'}) }}
+                                    </div>
+                                </div>
+                                {{ form_rest(form) }}
+                            </form> <!-- /form -->
+                        </section>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {% for message in app.session.flashbag.get('notice') %}
+        $.notify("{{ message }}", "success");
+    {% endfor %}
+{% endblock %}

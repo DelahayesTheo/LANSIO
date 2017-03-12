@@ -1,13 +1,31 @@
-<div class="sideMenu">
-    <div class="enteteMenu">
-        LAN des SIO
-    </div>
-    <ul>
-        <li><a href="{{ path('admin_list_game') }}">Liste des jeux</a></li>
-        <li><a href="{{ path('admin_add_game') }}">Ajouter un jeu</a></li>
-        <li><a href="{{ path('admin_dashboard') }}">Liste des utilisateur</a></li>
-        <li><a href="{{ path('admin_list_platform') }}">Liste des plateformes</a></li>
-        <li><a href="{{ path('admin_add_platform') }}">Ajouter une plateforme</a></li>
-        <li><a href="{{ path('admin_add_user') }}">Ajouter un utilisateur</a></li>
+<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_list_game') }}">Liste des jeux </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_add_game') }}">Ajouter un jeu</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_dashboard') }}">Liste les utilisateurs</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_list_platform') }}">Liste les plateformes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_add_platform') }}">Ajouter une plateforme</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_add_user') }}">Ajouter un utilisateurs</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_list_request') }}">Lister les requêtes utilisateur</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_add_equipment') }}">Ajouter equipement</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('admin_add_equipment_type') }}">Ajouter type d'equipement</a>
+        </li>
     </ul>
-</div>
+</nav>

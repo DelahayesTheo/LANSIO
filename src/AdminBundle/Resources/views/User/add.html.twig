@@ -1,9 +1,23 @@
 {% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}" />
+{% endblock %}
 {% block body %}
-    {% include 'AdminBundle:component:sideMenu.html.twig' %}
-    <h3>Ajouter un utilisateur:</h3>
-    {% if successMessage is not empty %}
-        <div class="alert alert-success" role="alert">{{ successMessage }}</div>
-    {% endif %}
-    {% include 'UserBundle:Registration:register_content.html.twig' %}
+    {% include 'AdminBundle:component:topNavbar.html.twig' %}
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'AdminBundle:component:sideMenu.html.twig' %}
+
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                <h1>Ajouter un utilisateur :</h1>
+
+                <section class="mx-auto row text-center">
+                    {% if successMessage is not empty %}
+                        <div class="alert alert-success" role="alert">{{ successMessage }}</div>
+                    {% endif %}
+                    {% include 'UserBundle:Registration:register_content.html.twig' %}
+                </section>
+            </main>
+        </div>
+    </div>
 {% endblock %}
