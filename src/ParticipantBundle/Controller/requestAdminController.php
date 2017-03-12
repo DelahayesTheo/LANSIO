@@ -13,35 +13,6 @@ use AdminBundle\Entity\Platform;
 class requestAdminController extends Controller
 {
     /**
-     * @Route("/demande-admin/",
-     *    name="user_request_admin")
-     * @Security("is_granted('ROLE_USER')")
-     */
-    public function requestAdminAction(Request $request)
-    {
-        $em = $this
-            ->getDoctrine()
-            ->getManager();
-        $requestAdminGame = new requestAdminGame();
-        $user = $this->getUser();
-        $form = $this->createForm(new requestAdminGameType(), $requestAdminGame);
-
-        if ($form->handleRequest($request)->isValid()) {
-            $requestAdminGame->setUser($user);
-            $requestAdminGame->setStatus(0);
-            $em->persist($requestAdminGame);
-            $em->flush();
-
-            $form = $this->createForm(new requestAdminGameType(), $requestAdminGame);
-            $this->get('session')->getFlashBag()->add('success', 'Votre demande à été enregistré');
-        }
-
-        return $this->render("ParticipantBundle:Demande:askAdminGame.html.twig", array(
-            "form" => $form->createView()
-        ));
-    }
-
-    /**
      * @Route("/lister-demande/",
      *     name="user_list_request_game")
      * @Security("is_granted('ROLE_USER')")

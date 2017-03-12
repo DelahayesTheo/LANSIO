@@ -1,1 +1,34 @@
-Hello World!
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" />
+{% endblock %}
+{% block body %}
+    {% include 'ParticipantBundle:Component:topNavbar.html.twig' %}
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'ParticipantBundle:Component:sideMenu.html.twig' %}
+
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                <h1>Bienvenue Anangry</h1>
+
+                <section class="mx-auto row text-center">
+                    <div class="row col-lg-12">
+                        <div class="col-lg-12">
+                            <p>L'espace participant permet de faire des demandes de jeux, voir les tournois
+                                et gérer votre profil.</p>
+                        </div>
+                    </div>
+                    <div class="row discord col-lg-10">
+                        <div class="col-lg-12">
+                            <p>Accéder au Discord de la Lan</p>
+                            <img src="img/Discord-Logo+Wordmark-White.png">
+                        </div>
+                    </div>
+                </section>
+
+
+            </main>
+
+        </div>
+    </div>
+{% endblock %}

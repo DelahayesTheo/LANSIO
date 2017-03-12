@@ -23,9 +23,7 @@ class GameType extends AbstractType
                         return $er->queryFindAllPlatformOrderByName();
                     },
                     'choice_label' => 'wording',
-                    'choice_value' => 'id',
-                    'multiple' => true,
-                    'expanded' => true,
+                    'choice_value' => 'id'
                 )
             )
             ->add('nbMaxPlayer', IntegerType::class)

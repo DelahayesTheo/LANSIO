@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/game.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}"/>
+{% endblock %}
+{% block body %}
+    {% include 'ParticipantBundle:Component:topNavbar.html.twig' %}
+<div class="row">
+    {% include 'ParticipantBundle:Component:sideMenu.html.twig' %}
+    <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3">
+        <h1 class="col-lg-2">JEUX</h1>
+        <h2 class="col-lg-4">
+            <span><a href="#" onclick="displayList()" class="btn btn-primary"> LISTE DE JEU</a></span>
+            <span><a href="#" onclick="displayAskForm()"class="btn btn-primary"> DEMANDE D'AJOUT DE JEU</a></span>
+        </h2>
+        <section class="mx-auto row ">
+            <div class="row col-lg-12">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <div id="list" class="fadeIn animated">
+                {{ render(controller('ParticipantBundle:Game:listGame')) }}
+            </div>
+            <div id="form" class="fadeIn animated none">
+                {% include 'ParticipantBundle:Demande:askAdminGame.html.twig' %}
+            </div>
+        </section>
+    </main>
+</div>
+{% endblock %}
+{% block scripts %}
+    {% for message in app.session.flashbag.get('notice') %}
+        $.notify("{{ message }}", "success");
+    {% endfor %}
+    {% if app.session.flashbag.get('notice') is not empty %}
+        emptyGameRequestFields();
+    {% endif %}
+{% endblock %}

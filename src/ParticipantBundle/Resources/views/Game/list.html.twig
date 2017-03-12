@@ -1,0 +1,19 @@
+<div class="row discord col-lg-12">
+    {% for game in games %}
+        {% set playedOrNot = game.playedBy(user) %}
+        <div class="col-lg-3 col-md-3">
+            <div class="{% if playedOrNot %}active{% endif %}" id="choose-to-play-div-{{ game.id }}">
+                <img src="{{ asset('img/LOL.jpg') }}">
+                <h3>{{ game.name }}
+                    {% if playedOrNot %}
+                        <a href="#" id="choose-to-play-link-{{ game.id }}" onclick="removeGamePlayed({{ game.id }})"><img  class="plus"  src="{{ asset('img/minus-5-xxl.png') }}"></a>
+                    {% else %}
+                        <a href="#"  id="choose-to-play-link-{{ game.id }}" onclick="chooseToPlay({{ game.id }})"><img  class="plus"  src="{{ asset('img/plus-5-xxl.png') }}"></a>
+
+                    {% endif %}
+                </h3>
+                <p><span id="choose-to-play-counter-{{ game.id }}">{{ game.usersPlaying|length }}</span> {% if  game.usersPlaying|length <= 1 %} Joueur {% else %} Joueurs {% endif %}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>

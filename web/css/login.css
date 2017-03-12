@@ -10,15 +10,7 @@ body {
     opacity : 0.9;
     border: 0px !important;
 }
-#Login {
-    position:absolute;
-    left: 50%;
-    top: 50%;
-    width: 500px;
-    height: 400px;
-    margin-top: -200px;
-    margin-left: -250px;
-}
+
 
 .black {
     background-color: #2c3035;

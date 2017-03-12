@@ -1,0 +1,38 @@
+/*
+ * Base structure
+ */
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  background-color: #7289DA; }
+
+/*
+ * Typography
+ */
+main {
+  color: #fff; }
+  main h1 {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    text-align: center; }
+  main p {
+    text-align: center; }
+  main .discord {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 4rem; }
+    main .discord img {
+      width: 15rem; }
+
+/*
+ * Dashboard
+ */
+/* Placeholders */
+.placeholders {
+  padding-bottom: 3rem; }
+
+.placeholder img {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem; }
+
+/*# sourceMappingURL=style.css.map */

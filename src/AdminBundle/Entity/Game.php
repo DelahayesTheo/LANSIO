@@ -23,7 +23,7 @@ class Game
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Platform")
+     * @ORM\ManyToOne(targetEntity="Platform")
      */
     private $platform;
 
@@ -38,7 +38,7 @@ class Game
     private $kind;
 
     /**
-     * @ORM\ManyToMany(targetEntity="UserBundle/Entity/User", mappedBy="gamesPlayed")
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="gamesPlayed")
      */
     private $usersPlaying;
     public function __construct()
@@ -46,6 +46,17 @@ class Game
         $this->usersPlaying = new ArrayCollection();
     }
 
+    public function removeUsersPlaying($user)
+    {
+        $this->usersPlaying->removeElement($user);
+    }
+    /**
+     * @return boolean
+     */
+    public function isPlayedBy($user)
+    {
+        return $this->usersPlaying->contains($user);
+    }
     /**
      * @return mixed
      */

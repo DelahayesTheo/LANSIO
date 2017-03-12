@@ -1,24 +1,31 @@
 {% extends '::base.html.twig' %}
 {% block body %}
     {% block stylesheet %}
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/comingsoon.css') }}" />
     {% endblock %}
-    <div class="container">
+    <div class="container-fluid primary-div">
         <div class="row">
-            <div id="index">
-                <div class="panel panel-default">
-                    <div class="panel-body black">
-                        <h2 class="center">Bienvenue sur le site de la LAN des SIO</h2>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('admin_dashboard') }}" class="center btn btn-primary">Accéder au site</a>
-                        {% elseif is_granted('ROLE_USER') %}
-                            <a href="{{ path('participant_dashboard') }}" class="center btn btn-primary">Accéder au site</a>
-                        {% else %}
-                            <a href="{{ path('fos_user_security_login') }}" class="center btn btn-primary">Se connecter</a>
-                        {% endif %}
-                    </div>
-                </div>
+            <div class="row justify-content-md-center col-lg-12 div-timer mx-auto">
+
+                <div class="col-lg-2"><div class="block-time"><p>20</p></div><p class="nm-time">JOURS</p></div>
+                <div class="col-lg-2"><div class="block-time"><p>20</p></div><p class="nm-time">HEURES</p></div>
+                <div class="col-lg-2"><div class="block-time"><p>20</p></div><p class="nm-time">MINUTES</p></div>
+                <div class="col-lg-2"><div class="block-time"><p>20</p></div><p class="nm-time">SECONDES</p></div>
+
             </div>
+
+            <div class="row div-count justify-content-md-center mx-auto col-lg-12">
+                <div class="col-lg-2"><div class="block-count"><p class="num-count">30</p><p class="name-count">Particpants</p></div></div>
+                <div class="col-lg-2 offset-lg-1"><div class="block-count center-count"><p  class="num-count">+30</p><p class="name-count">Jeux</p></div></div>
+                <div class="col-lg-2  offset-lg-1"><div class="block-count"><p class="num-count">30</p><p class="name-count">Pizzas</p></div></div>
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin_dashboard') }}" class="btn mx-auto">Accéder au site</a>
+            {% elseif is_granted('ROLE_USER') %}
+                <a href="{{ path('participant_dashboard') }}" class="btn mx-auto">Accéder au site</a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}" class="btn mx-auto">Se connecter</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -1,52 +1,47 @@
-{% extends '::base.html.twig' %}
-
-{% block body %}
-    <h3>Demander un jeu à un admin:</h3>
-    {% for flashbag in app.session.flashbag.has('success') %}
-        <div class="alert alert-success" role="alert">{{ flashbag }}</div>
-    {% endfor %}
-    <form class="form-horizontal" method="post" role="form">
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.name, 'Nom du jeu') }}
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.name) }}
+{% for flashbag in app.session.flashbag.has('success') %}
+    <div class="alert alert-success" role="alert">{{ flashbag }}</div>
+{% endfor %}
+<form class="form-horizontal" method="post" action="{{ path('user_game_dashboard') }}" role="form">
+    <div class="form-group">
+        <div class="control-label col-sm-3">
+            {{ form_label(form.name, 'Nom du jeu') }}
+        </div>
+        <div class="col-sm-9">
+            {{ form_widget(form.name) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="control-label col-sm-3">
+            {{ form_label(form.platform, 'Plateforme') }}
+        </div>
+        <div class="col-sm-9">
+            <div class="col-sm-6">
+                {% for choice in form.platform %}
+                    {{ form_widget(choice) }}&nbsp {{ form_label(choice) }} &nbsp &nbsp
+                {% endfor %}
             </div>
         </div>
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.platform, 'Plateforme') }}
-            </div>
-            <div class="col-sm-9">
-                <div class="col-sm-6">
-                    {% for choice in form.platform %}
-                        {{ form_widget(choice) }}&nbsp {{ form_label(choice) }} &nbsp &nbsp
-                    {% endfor %}
-                </div>
-            </div>
+    </div>
+    <div class="form-group">
+        <div class="control-label col-sm-3">
+            {{ form_label(form.nbMaxPlayer, 'Nombre maximum de joueur') }}
         </div>
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.nbMaxPlayer, 'Nombre maximum de joueur') }}
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.nbMaxPlayer) }}
-            </div>
+        <div class="col-sm-9">
+            {{ form_widget(form.nbMaxPlayer) }}
         </div>
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.kind, 'Genre du jeu') }}
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.kind) }}
-            </div>
+    </div>
+    <div class="form-group">
+        <div class="control-label col-sm-3">
+            {{ form_label(form.kind, 'Genre du jeu') }}
         </div>
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9 ">
-                {{ form_widget(form.save, {'attr': {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
-            </div>
+        <div class="col-sm-9">
+            {{ form_widget(form.kind) }}
         </div>
-        {{ form_rest(form) }}
-    </form> <!-- /form -->
-{% endblock %}
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9 ">
+            {{ form_widget(form.save, {'attr': {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
+        </div>
+    </div>
+    {{ form_rest(form) }}
+</form> <!-- /form -->

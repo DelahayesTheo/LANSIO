@@ -20,37 +20,80 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(name="isComing", type="boolean")
+     * @ORM\Column(name="isComing", type="boolean", nullable=true, options={"default"=false})
      */
     protected $isComing;
 
     /**
-     * @ORM\Column(name="isEating", type="boolean")
+     * @ORM\Column(name="isEating", type="boolean", nullable=true)
      */
     protected $isEating;
 
     /**
-     * @ORM\Column(name="hasGuest", type="boolean")
+     * @ORM\Column(name="hasGuest", type="boolean", nullable=true)
      */
     protected $hasGuest;
 
     /**
-     * @ORM\Column(name="needScreen", type="boolean")
+     * @ORM\Column(name="needScreen", type="boolean", nullable=true)
      */
     protected $needScreen;
 
     /**
-     * @ORM\Column(name="needKeyboard", type="boolean")
+     * @ORM\Column(name="needKeyboard", type="boolean", nullable=true)
      */
     protected $needKeyboard;
 
     /**
-     * @ORM\Column(name="hasDefinedRequired", type="boolean")
+     * @ORM\Column(name="needNetworkCable", type="boolean", nullable=true)
+     */
+    protected $needNetworkCable;
+
+    /**
+     * @ORM\Column(name="needMouse", type="boolean", nullable=true)
+     */
+    protected $needMouse;
+
+    /**
+     * @return mixed
+     */
+    public function getNeedNetworkCable()
+    {
+        return $this->needNetworkCable;
+    }
+
+    /**
+     * @param mixed $needNetworkCable
+     */
+    public function setNeedNetworkCable($needNetworkCable)
+    {
+        $this->needNetworkCable = $needNetworkCable;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNeedMouse()
+    {
+        return $this->needMouse;
+    }
+
+    /**
+     * @param mixed $needMouse
+     */
+    public function setNeedMouse($needMouse)
+    {
+        $this->needMouse = $needMouse;
+    }
+
+
+    /**
+     * @ORM\Column(name="hasDefinedRequired", type="boolean", nullable=true)
      */
     protected $hasDefinedRequired;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AdminBundle/Entity/Game", inversedBy="usersPlaying")
+     * @ORM\ManyToMany(targetEntity="AdminBundle\Entity\Game", inversedBy="usersPlaying")
      */
     protected $gamesPlayed;
 
@@ -61,7 +104,6 @@ class User extends BaseUser
     {
         return $this->gamesPlayed;
     }
-
 
     /**
      * @param mixed $gametoRemove
