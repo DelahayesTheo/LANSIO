@@ -18,10 +18,10 @@ class bringedEquipmentRepository extends EntityRepository
             ->getEntityManager();
 
         $query = $em->createQueryBuilder()
-            ->select('SUM(b.quantity) as quantity')
-            ->from('ParticipantBundle:bringedEquipment', 'b')
-            ->leftJoin('b.equipment', 'e')
-            ->groupBy('e.platform', 'e.equipmentType');
+            ->select('e, SUM(b.quantity) AS totalQuantity')
+            ->from('AdminBundle:Equipment', 'e')
+            ->innerJoin('e.bringed', 'b')
+            ->groupBy('e.id');
 
 
         return $result = $query->getQuery()->getResult();

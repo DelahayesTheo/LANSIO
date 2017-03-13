@@ -16,4 +16,18 @@ class GameRepository extends EntityRepository
 
         return $query->getQuery()->getResult();
     }
+
+    public function countGamePlayed()
+    {
+        $em = $this
+            ->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('COUNT(g.id)')
+            ->from('AdminBundle:Game', 'g')
+            ->where('g.usersPlaying IS NOT EMPTY');
+
+        $result = $query->getQuery()->getResult();
+        return $result[0][1];
+    }
 }

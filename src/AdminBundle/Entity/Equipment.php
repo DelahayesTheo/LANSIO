@@ -27,9 +27,31 @@ class Equipment
     private $platform;
 
     /**
+     * @ORM\ManyToMany(targetEntity="ParticipantBundle\Entity\bringedEquipment", inversedBy="equipment")
+     */
+    private $bringed;
+    /**
      * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\EquipmentType")
      */
     private $equipmentType;
+
+    /**
+     * @return mixed
+     */
+    public function getBringed()
+    {
+        return $this->bringed;
+    }
+
+    /**
+     * @param mixed $bringed
+     */
+    public function setBringed($bringed)
+    {
+        $bringed->setEquipment($this);
+        $this->bringed[] = $bringed;
+    }
+
 
     /**
      * @return mixed

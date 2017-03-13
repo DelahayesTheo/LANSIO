@@ -1,23 +1,21 @@
 {% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/comingsoon.css') }}" />
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/jquery.countdown.min.js') }}"></script>
+{% endblock %}
 {% block body %}
-    {% block stylesheet %}
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/comingsoon.css') }}" />
-    {% endblock %}
+
     <div class="container-fluid primary-div">
         <div class="row">
-            <div class="row justify-content-md-center col-lg-12 div-timer mx-auto">
-
-                <div class="col-lg-2"><div class="block-time"><p>20</p></div><p class="nm-time">JOURS</p></div>
-                <div class="col-lg-2"><div class="block-time"><p>20</p></div><p class="nm-time">HEURES</p></div>
-                <div class="col-lg-2"><div class="block-time"><p>20</p></div><p class="nm-time">MINUTES</p></div>
-                <div class="col-lg-2"><div class="block-time"><p>20</p></div><p class="nm-time">SECONDES</p></div>
-
+            <div id="clock" class="row justify-content-md-center col-lg-12 div-timer mx-auto">
             </div>
 
             <div class="row div-count justify-content-md-center mx-auto col-lg-12">
-                <div class="col-lg-2"><div class="block-count"><p class="num-count">30</p><p class="name-count">Particpants</p></div></div>
-                <div class="col-lg-2 offset-lg-1"><div class="block-count center-count"><p  class="num-count">+30</p><p class="name-count">Jeux</p></div></div>
-                <div class="col-lg-2  offset-lg-1"><div class="block-count"><p class="num-count">30</p><p class="name-count">Pizzas</p></div></div>
+                <div class="col-lg-2"><div class="block-count"><p class="num-count">{{ nbUsers }}</p><p class="name-count">Particpants</p></div></div>
+                <div class="col-lg-2 offset-lg-1"><div class="block-count center-count"><p  class="num-count">{{ nbGamePlayed }}</p><p class="name-count">Jeux</p></div></div>
+                <div class="col-lg-2  offset-lg-1"><div class="block-count"><p class="num-count">{{ nbPizza }}</p><p class="name-count">Pizzas</p></div></div>
             </div>
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('admin_dashboard') }}" class="btn mx-auto">Accéder au site</a>
@@ -28,4 +26,15 @@
             {% endif %}
         </div>
     </div>
+{% endblock %}
+{% block scripts %}
+    $('#clock').countdown('2017/03/31').on('update.countdown', function(event) {
+    var $this = $(this).html(event.strftime(''
+    + '<div class="col-lg-2"><div class="block-time"><p>%-w</p></div><p class="nm-time">SEMAINE<span style="text-transform: uppercase;">%!w</span></p></div> '
+    + '<div class="col-lg-2"><div class="block-time"><p>%-d</p></div><p class="nm-time">JOUR<span style="text-transform: uppercase;">%!d</span></p></div> '
+    + '<div class="col-lg-2"><div class="block-time"><p>%H</p></div><p class="nm-time">HR</p></div>'
+    + '<div class="col-lg-2"><div class="block-time"><p>%M</p></div><p class="nm-time">MIN</p></div>'
+    + '<div class="col-lg-2"><div class="block-time"><p>%S</p></div><p class="nm-time">SEC</p></div> '
+    ));
+    });
 {% endblock %}

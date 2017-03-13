@@ -30,7 +30,7 @@ class bringedEquipment
     private $quantity;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AdminBundle\Entity\Equipment")
+     * @ORM\ManyToMany(targetEntity="AdminBundle\Entity\Equipment", mappedBy="bringed")
      */
     private $equipment;
 
@@ -52,6 +52,7 @@ class bringedEquipment
      */
     public function setEquipment($equipment)
     {
+        $equipment->setBringed($this);
         $this->equipment[] = $equipment;
     }
 

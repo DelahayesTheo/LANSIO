@@ -14,7 +14,6 @@ class requireEquipmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('isEating', CheckboxType::class, array( 'required' => false ))
             ->add('needScreen', CheckboxType::class, array( 'required' => false ))
             ->add('needMouse', CheckboxType::class, array( 'required' => false ))
             ->add('needKeyboard', CheckboxType::class, array( 'required' => false ))

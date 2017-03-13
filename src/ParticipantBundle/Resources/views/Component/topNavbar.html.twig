@@ -7,11 +7,14 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <div class="mr-auto"></div>
         <ul class="navbar-nav text-left">
-            <li>
-                <a href="#">Anangry</a>
-            </li>
-            <li>
-                <img src="img/av_discord_loic.png">
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <b>{{ user.username|upper }}</b>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" style="color: black" href="#">Profil</a>
+                    <a class="dropdown-item" style="color: black" href="{{ path('fos_user_security_logout') }}">Deconnexion</a>
+                </div>
             </li>
         </ul>
     </div>

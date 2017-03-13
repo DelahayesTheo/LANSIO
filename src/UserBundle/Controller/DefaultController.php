@@ -12,6 +12,21 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('UserBundle:Default:index.html.twig');
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+
+        $gameRepository = $em->getRepository('AdminBundle:Game');
+        $userRepository = $em->getRepository('UserBundle:User');
+
+        $countUser = $userRepository->countAllUser();
+        $countEating = $userRepository->countAllUserEating();
+        $countGame = $gameRepository->countGamePlayed();
+
+        return $this->render('UserBundle:Default:index.html.twig', array(
+            "nbUsers" => $countUser,
+            "nbPizza" => $countEating,
+            "nbGamePlayed" => $countGame
+        ));
     }
 }

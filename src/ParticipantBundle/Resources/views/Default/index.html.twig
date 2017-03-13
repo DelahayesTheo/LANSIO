@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" />
 {% endblock %}
 {% block body %}
-    {% include 'ParticipantBundle:Component:topNavbar.html.twig' %}
+    {{ render(controller('UserBundle:Nav:navController', {"path" : "USER"})) }}
     <div class="container-fluid">
         <div class="row">
             {% include 'ParticipantBundle:Component:sideMenu.html.twig' %}
@@ -18,10 +18,15 @@
                                 et gérer votre profil.</p>
                         </div>
                     </div>
+                    <div class="row logo col-lg-12">
+                        <div class="col-lg-12">
+                            <img src="{{ asset('img/logo_web.png') }}">
+                        </div>
+                    </div>
                     <div class="row discord col-lg-10">
                         <div class="col-lg-12">
                             <p>Accéder au Discord de la Lan</p>
-                            <img src="img/Discord-Logo+Wordmark-White.png">
+                            <img src="{{ asset('img/Discord-Logo+Wordmark-White.png') }}">
                         </div>
                     </div>
                 </section>
