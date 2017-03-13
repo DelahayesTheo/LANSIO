@@ -1,6 +1,7 @@
 body {
-  background: url(../img/backhd.png) fixed no-repeat;
-  background-size : cover; }
+    background: url(../img/backhd.png) fixed no-repeat;
+    background-size: cover;
+}
 
 @media (min-width: 1920px) {
     body {
