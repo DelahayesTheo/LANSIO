@@ -13,13 +13,15 @@ body {
  */
 main {
   color: #fff; }
-  main h1 {
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    border-bottom: 4px solid #7289DA;
-    text-align: left;
-    padding-bottom: 1rem;
-    margin-left: 3rem; }
+
+main h1 {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  border-bottom: 4px solid #7289DA;
+  text-align: left;
+  padding-bottom: 1rem;
+  margin-left: 3rem;
+}
 
 /* Sidebar navigation */
 .sidebar {
@@ -32,27 +34,39 @@ main {
  */
 main .discord {
   margin-top: 4rem; }
-  main .discord div {
-    width: 272px;
-    margin-right: auto;
-    margin-left: auto; }
-    main .discord div .active {
-      background-color: #7289DA; }
-    main .discord div img {
-      width: 15rem;
-      display: block;
-      margin-right: auto !important;
-      margin-left: auto !important;
-      padding-top: 1rem; }
-    main .discord div h3 {
-      font-size: larger;
-      margin-left: 1rem;
-      padding-right: 1rem; }
-      main .discord div h3 .plus {
-        width: 1.3rem;
-        float: right; }
-    main .discord div p {
-      margin-left: 1rem;
-      padding-bottom: 0.5rem; }
+
+main .discord div {
+  width: 272px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+main .discord div .active {
+  background-color: #7289DA;
+}
+
+main .discord div img {
+  width: 15rem;
+  display: block;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  padding-top: 1rem;
+}
+
+main .discord div h3 {
+  font-size: larger;
+  margin-left: 1rem;
+  padding-right: 1rem;
+}
+
+main .discord div h3 .plus {
+  width: 1.3rem;
+  float: right;
+}
+
+main .discord div p {
+  margin-left: 1rem;
+  padding-bottom: 0.5rem;
+}
 
 /*# sourceMappingURL=style.css.map */
