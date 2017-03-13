@@ -1,0 +1,36 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/stuff.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}"/>
+{% endblock %}
+{% block body %}
+    {{ render(controller('UserBundle:Nav:navController', {"path" : "USER"})) }}
+    <div class="row">
+        {% include 'ParticipantBundle:Component:sideMenu.html.twig' %}
+        <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3">
+            <h1 class="col-lg-2">EQUIPEMENT</h1>
+            <section class="mx-auto row ">
+                <div class="row col-lg-12">
+                    <h2>Modification de {{ name.equipmentType }} ({{ name.platform }})</h2>
+                    {{ form_start(form) }}
+                    <div class="form-check">
+                        <label class="form-check-label text-center">
+                            {{ form_widget(form.quantity, {'attr' : {'class' : 'form-check-input'}}) }}
+                            {{ form_label(form.quantity) }}
+                        </label><br/>
+                        <label class="form-check-label text-center">
+                            {{ form_widget(form.save, {'attr' : {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
+                        </label>
+                    </div>
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </section>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {% for message in app.session.flashbag.get('notice') %}
+        $.notify("{{ message }}", "success");
+    {% endfor %}
+{% endblock %}

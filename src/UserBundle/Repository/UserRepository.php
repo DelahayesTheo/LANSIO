@@ -18,6 +18,19 @@ class UserRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function findSumEquipment()
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('SUM(u.needScreen) as nbScreenNeeded, SUM(u.needMouse) as nbMouseNeeded, 
+            SUM(u.needKeyboard) as nbKeyboardNeeded, SUM(u.needNetworkCable) as nbNetworkCableNeeded')
+            ->from("UserBundle:User", "u");
+
+        $result = $query->getQuery()->getResult();
+        return $result[0];
+    }
+
     public function countAllUser()
     {
         $em = $this->getEntityManager();

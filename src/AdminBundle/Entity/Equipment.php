@@ -27,7 +27,7 @@ class Equipment
     private $platform;
 
     /**
-     * @ORM\ManyToMany(targetEntity="ParticipantBundle\Entity\bringedEquipment", inversedBy="equipment")
+     * @ORM\OneToMany(targetEntity="ParticipantBundle\Entity\bringedEquipment", mappedBy="equipment", cascade={"persist", "remove"})
      */
     private $bringed;
     /**
@@ -48,7 +48,6 @@ class Equipment
      */
     public function setBringed($bringed)
     {
-        $bringed->setEquipment($this);
         $this->bringed[] = $bringed;
     }
 

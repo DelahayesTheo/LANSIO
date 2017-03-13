@@ -61,4 +61,9 @@ class EquipmentType
     {
         return $this->wording;
     }
+
+    public function __toString()
+    {
+        return $this->wording;
+    }
 }

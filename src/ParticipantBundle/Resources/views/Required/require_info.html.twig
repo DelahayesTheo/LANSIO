@@ -1,39 +1,51 @@
 {% extends '::base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/stuff.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}"/>
+{% endblock %}
 {% block body %}
-    <h3>Info obligatoire :</h3>
-    <form class="form-horizontal" method="post" role="form">
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.isComing, 'Je viens à la LAN') }}
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.isComing) }}
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.isEating, 'Je commande une pizza à la LAN') }}
-            </div>
-            <div class="col-sm-9">
-                <div class="col-sm-6">
-                    {{ form_widget(form.isEating) }}
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.needScreen, 'J\ai besoin qu\'on me prête un écran') }}
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.needScreen) }}
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9 ">
-                {{ form_widget(form.save, {'attr': {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
-            </div>
-        </div>
-        {{ form_rest(form) }}
-    </form> <!-- /form -->
+    {{ render(controller('UserBundle:Nav:navController', {"path" : "USER"})) }}
+    <div class="row">
+        <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3">
+            <h1 class="col-lg-3">INFOS DE BASES :</h1>
+            <section class="mx-auto row ">
+                <div class="row col-lg-12">
+                        <div class=" form-check">
+                            {{ form_start(form) }}
+                            <label class="form-check-label">
+                                {{ form_widget(form.isEating,{'attr' : {'class' : 'form-check-input'}}) }}
+                                {{ form_label(form.isEating, 'Je commande une pizza à la LAN') }}
+                            </label><br/>
+                            <label class="form-check-label">
+                                {{ form_widget(form.needScreen, {'attr' : {'class' : 'form-check-input'}}) }}
+                                {{ form_label(form.needScreen, "J'ai besoin d'un écran") }}
+                            </label><br/>
+                            <label class="form-check-label">
+                                {{ form_widget(form.needMouse, {'attr' : {'class' : 'form-check-input'}}) }}
+                                {{ form_label(form.needMouse, "J'ai besoin d'une souris") }}
+                            </label><br/>
+                            <label class="form-check-label">
+                                {{ form_widget(form.needKeyboard, {'attr' : {'class' : 'form-check-input'}}) }}
+                                {{ form_label(form.needKeyboard, "J'ai besoin d'un clavier") }}
+                            </label><br/>
+                            <label class="form-check-label">
+                                {{ form_widget(form.needNetworkCable, {'attr' : {'class' : 'form-check-input'}}) }}
+                                {{ form_label(form.needNetworkCable, "J'ai besoin d'un cable ethernet") }}
+                            </label><br/>
+                            {{ form_widget(form.save, {'attr' : {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
+                            {{ form_rest(form) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+            </section>
+        </main>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/equipment.js') }}"
+{% endblock %}
+{% block scripts %}
+    {% for message in app.session.flashbag.get('notice') %}
+        $.notify("{{ message }}", "success");
+    {% endfor %}
 {% endblock %}

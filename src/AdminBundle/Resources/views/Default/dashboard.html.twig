@@ -1,0 +1,37 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}"/>
+{% endblock %}
+{% block body %}
+    {% include 'AdminBundle:component:topNavbar.html.twig' %}
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'AdminBundle:component:sideMenu.html.twig' %}
+
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                <h1>Liste des utilisateurs :</h1>
+
+                <section class="mx-auto row text-center">
+                    <div class="col-lg-offset-1 col-lg-10">
+                        {% if nbSupportRequest == 0 %}
+                            <h1 class="text-center alert-info"> Il n'y a pas de requêtes support à traiter</h1>
+                        {% else %}
+                            <h1 class="text-center alert-danger">Il y a {{ nbSupportRequest }} requêtes support à
+                                traiter</h1>
+                        {% endif %}
+                        <br/>
+                        {% if nbRequestAdmin == 0 %}
+                            <h1 class="text-center alert-info">Il n'y a pas de demande d'insertion de jeu</h1>
+                        {% else %}
+                            <h1 class="text-center alert-danger">Il y a {{ nbRequestAdmin }} demande d'insertion de jeu
+                                à traiter</h1>
+                        {% endif %}
+                    </div>
+                </section>
+
+
+            </main>
+
+        </div>
+    </div>
+{% endblock %}

@@ -4,6 +4,7 @@ namespace ParticipantBundle\Controller;
 
 use AdminBundle\Entity\Equipment;
 use ParticipantBundle\Entity\bringedEquipment;
+use ParticipantBundle\Form\Type\bringedEquipmentModifyType;
 use ParticipantBundle\Form\Type\bringedEquipmentType;
 use UserBundle\Entity\User;
 use ParticipantBundle\Form\Type\requireEquipmentType;
@@ -29,7 +30,6 @@ class EquipmentController extends Controller
         $bringedEquipmentRepository = $em->getRepository('ParticipantBundle:bringedEquipment');
         $ownBringedEquipment = $bringedEquipmentRepository->findBy(array("user" => $user));
         $allBringedEquipment = $bringedEquipmentRepository->findAllbringedEquipmentSum();
-
         $form = $this->createForm(new requireEquipmentType(), $user);
         $form->handleRequest($request);
         if ($form->isValid() && $form->isSubmitted()) {
@@ -51,6 +51,7 @@ class EquipmentController extends Controller
 
             if (empty($verif)) {
                 $bringedEquipment->setUser($user);
+                $bringedEquipment->setEquipment($bringedEquipment->getEquipment());
                 $em->persist($bringedEquipment);
                 $em->flush();
                 $this->addFlash(
@@ -77,11 +78,59 @@ class EquipmentController extends Controller
     }
 
     /**
-     * @Route(name="user_equipement_add_bringed")
+     * @Route("/modifier-equipement-apporte/{bringed}/",
+     *     name="user_equipement_modify_bringed")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function addBringedEquipmentAction()
+    public function modifyBringedEquipmentAction(BringedEquipment $bringed, Request $request)
     {
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $form = $this->createForm(new bringedEquipmentModifyType(), $bringed);
 
+        $form->handleRequest($request);
+
+        if ($form->isValid() && $form->isSubmitted()) {
+            if ($bringed->getQuantity() <= 0) {
+                $em->remove($bringed);
+                $em->flush();
+            } else {
+                $em->persist($bringed);
+                $em->flush();
+            }
+            $this->addFlash(
+                'notice',
+                'Votre changement à été pris en compte'
+            );
+            return $this->redirectToRoute("user_equipment");
+        }
+        return $this->render("ParticipantBundle:Equipment:modify.html.twig", array(
+            "form" => $form->createView(),
+            "name" => $bringed->getEquipment()
+        ));
+    }
+
+    /**
+     * @Route("/supprimer-equipement-apporte/{bringed}/",
+     *     name="user_equipment_delete_bringed",
+     *     options={"expose"=true})
+     * @Security("is_granted('ROLE_USER')")
+     */
+    public function deleteBringedEquipmentAction(BringedEquipment $bringed)
+    {
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+
+        $em->remove($bringed);
+        $em->flush();
+
+        $this->addFlash(
+            'notice',
+            'L\'equipement à été supprimé de votre liste'
+        );
+
+        return $this->redirectToRoute("user_equipment");
     }
 }

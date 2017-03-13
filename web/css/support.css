@@ -1,0 +1,93 @@
+body {
+    padding-top: 50px;
+    background-color: #7289DA;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar ul a {
+    margin-right: 1rem;
+    margin-top: 0.6rem;
+    display: inline-block;
+}
+
+.navbar img {
+    width: 3rem;
+}
+
+main {
+    color: #fff;
+}
+
+main h1 {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+main p {
+    text-align: center;
+}
+
+main form {
+    margin-top: 8rem;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main form .btn-primary {
+    background-color: #7289DA;
+    border-color: #fff;
+    margin-top: 3rem;
+}
+
+main form .btn-primary:hover {
+    background-color: #fff;
+    color: #7289DA;
+    border-color: #fff;
+}
+
+/*
+ * Sidebar
+ */
+.sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Sidebar navigation */
+.sidebar {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #2C2F33;
+}
+
+.sidebar .nav {
+    margin-bottom: 20px;
+}
+
+.sidebar .nav-item {
+    width: 100%;
+}
+
+.sidebar .nav-item + .nav-item {
+    margin-left: 0;
+}
+
+.sidebar .nav-link {
+    border-radius: 0;
+    color: #fff;
+    font-size: x-large;
+}
+
+/*# sourceMappingURL=style.css.map */

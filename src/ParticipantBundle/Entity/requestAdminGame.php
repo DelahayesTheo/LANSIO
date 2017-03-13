@@ -38,7 +38,7 @@ class requestAdminGame
     private $nbMaxPlayer;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AdminBundle\Entity\Platform")
+     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Platform")
      */
     private $platform;
 

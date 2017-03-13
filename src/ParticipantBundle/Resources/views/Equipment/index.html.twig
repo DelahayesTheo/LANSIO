@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}"/>
 {% endblock %}
 {% block body %}
-    {% include 'ParticipantBundle:Component:topNavbar.html.twig' %}
+    {{ render(controller('UserBundle:Nav:navController', {"path" : "USER"})) }}
     <div class="row">
         {% include 'ParticipantBundle:Component:sideMenu.html.twig' %}
         <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3">
@@ -12,24 +12,24 @@
             <section class="mx-auto row ">
                 <div class="row col-lg-12">
                     <div class="col-lg-6">
-                        <h2>Matériel amener</h2>
+                        <h2>Je veux emprunter :</h2>
                         <div class=" form-check">
                             {{ form_start(form) }}
                             <label class="form-check-label">
                                 {{ form_widget(form.needScreen, {'attr' : {'class' : 'form-check-input'}}) }}
-                                {{ form_label(form.needScreen) }}
+                                {{ form_label(form.needScreen,"Un écran") }}
                             </label><br/>
                             <label class="form-check-label">
                                 {{ form_widget(form.needMouse, {'attr' : {'class' : 'form-check-input'}}) }}
-                                {{ form_label(form.needMouse) }}
+                                {{ form_label(form.needMouse, "Une souris") }}
                             </label><br/>
                             <label class="form-check-label">
                                 {{ form_widget(form.needKeyboard, {'attr' : {'class' : 'form-check-input'}}) }}
-                                {{ form_label(form.needKeyboard) }}
+                                {{ form_label(form.needKeyboard,"Un clavier") }}
                             </label><br/>
                             <label class="form-check-label">
                                 {{ form_widget(form.needNetworkCable, {'attr' : {'class' : 'form-check-input'}}) }}
-                                {{ form_label(form.needNetworkCable) }}
+                                {{ form_label(form.needNetworkCable,"Un cable réseau") }}
                             </label><br/>
                             {{ form_widget(form.save, {'attr' : {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
                             {{ form_rest(form) }}
@@ -57,17 +57,17 @@
                     <div class="row col-sm-12">
                         <p>
 
-                        </p>
+                        </p><br/> <br/>
                     </div>
                     <div class="row col-sm-12">
                         <h2>
-                            <span><a href="#" onclick="displayListOwn()" class="btn btn-primary"> MA LISTE</a></span>
-                            <span><a href="#" onclick="displayListAll()"class="btn btn-primary"> LISTE GENERALE</a></span>
-                        </h2> <br/><br/>
+                            <span><a href="#" onclick="displayListOwn()" class="btn btn-primary"> MA LISTE D'EQUIPEMENT</a></span>
+                            <span><a href="#" onclick="displayListAll()"class="btn btn-primary"> LISTE D'EQUIPEMENT GENERALE</a></span>
+                        </h2>
                     </div>
-                    <div id="listAll" class="fadeIn animated none">
+                    <div id="listAll" class="fadeIn animated none row col-sm-12">
                         {% if allBringedEquipment is not empty %}
-                            <table class="table">
+                            <table class="table text-center">
                                 <thead class="thead-default">
                                 <tr>
                                     <th>Equipement</th>
@@ -77,8 +77,8 @@
                                 <tbody>
                                 {% for oneBringedEquipment in allBringedEquipment %}
                                     <tr>
-                                        <td>oneBringedEquipment.equipment.equipmentType.wording (oneBringedEquipment.equipment.platform.wording)</td>
-                                        <td>oneBringedEquipment.wording</td>
+                                        <td>{{ oneBringedEquipment.equipment.equipmentType.wording }} ({{ oneBringedEquipment.equipment.platform.wording }}) </td>
+                                        <td>{{ oneBringedEquipment.totalQuantity }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -89,20 +89,25 @@
                             </div>
                         {% endif %}
                     </div>
-                    <div id="listOwn" class="fadeIn animated">
+                    <div id="listOwn" class="fadeIn animated row col-sm-12">
                         {% if ownBringedEquipment is not empty %}
-                        <table class="table">
+                        <table class="table text-center">
                             <thead class="thead-default">
                             <tr>
                                 <th>Equipement</th>
                                 <th>Quantite</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for oneBringedEquipment in ownBringedEquipment %}
-                            <tr>
-                                <td>oneBringedEquipment.equipment.equipmentType.wording (oneBringedEquipment.equipment.platform.wording)</td>
-                                <td>oneBringedEquipment.wording</td>
+                            <tr id="own-{{ oneBringedEquipment.id }}">
+                                <td>{{ oneBringedEquipment.equipment.equipmentType }} ( {{ oneBringedEquipment.equipment.platform }} )</td>
+                                <td>{{ oneBringedEquipment.quantity }}</td>
+                                <td>
+                                <a href="{{ path('user_equipement_modify_bringed', {'bringed' : oneBringedEquipment.id }) }}" class="btn btn-primary">Modifier</a>
+                                <a href="#" onclick="removeEquipmentBringed({{ oneBringedEquipment.id }})" class="btn btn-primary">Supprimer</a>
+                                </td>
                             </tr>
                                 {% endfor %}
                             </tbody>

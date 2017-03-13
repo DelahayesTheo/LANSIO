@@ -23,6 +23,21 @@ class requestAdminGameRepository extends EntityRepository
             ->setParameter('one', 1);
 
         return $result = $query->getQuery()->getResult();
-
     }
+
+    public function countRequestNotDone()
+    {
+        $em = $this
+            ->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('COUNT(rag.id)')
+            ->from('ParticipantBundle:requestAdminGame', 'rag')
+            ->where('rag.status = :zero')
+            ->setParameter('zero', 0);
+
+        $result = $query->getQuery()->getResult();
+        return $result[0][1];
+    }
+
 }

@@ -13,9 +13,11 @@ class firstConnection extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('isComing', CheckboxType::class, array( 'required' => false ))
             ->add('isEating', CheckboxType::class, array( 'required' => false ))
             ->add('needScreen', CheckboxType::class, array( 'required' => false ))
+            ->add('needMouse', CheckboxType::class, array('required' => false))
+            ->add('needKeyboard', CheckboxType::class, array('required' => false))
+            ->add('needNetworkCable', CheckboxType::class, array('required' => false))
             ->add('save', SubmitType::class)
             ->getForm();
     }

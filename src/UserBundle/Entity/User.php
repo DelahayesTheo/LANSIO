@@ -55,9 +55,30 @@ class User extends BaseUser
     protected $needMouse;
 
     /**
-     * @ORM\OneToMany(targetEntity="ParticipantBundle\Entity\bringedEquipment", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="ParticipantBundle\Entity\bringedEquipment", mappedBy="user", cascade={"persist", "remove"})
      */
     protected $bringedEquipment;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AdminBundle\Entity\SupportRequest", mappedBy="user")
+     */
+    protected $supportRequests;
+
+    /**
+     * @return mixed
+     */
+    public function getSupportRequests()
+    {
+        return $this->supportRequests;
+    }
+
+    /**
+     * @param mixed $supportRequests
+     */
+    public function setSupportRequests($supportRequests)
+    {
+        $this->supportRequests[] = $supportRequests;
+    }
 
     /**
      * @return mixed
@@ -72,7 +93,6 @@ class User extends BaseUser
      */
     public function setBringedEquipment($bringedEquipment)
     {
-        $bringedEquipment->addUser($this);
         $this->bringedEquipment->add($bringedEquipment);
     }
 

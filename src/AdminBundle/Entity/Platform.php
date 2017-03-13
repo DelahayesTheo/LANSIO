@@ -75,4 +75,9 @@ class Platform
         $this->wording = $wording;
     }
 
+    public function __toString()
+    {
+        return $this->wording;
+    }
+
 }

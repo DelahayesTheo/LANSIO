@@ -10,7 +10,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/",
-     * name="admin_dashboard")
+     *     name="admin_dashboard")
      * @Security("is_granted('ROLE_ADMIN')")
      */
     public function indexAction()
@@ -19,11 +19,15 @@ class DefaultController extends Controller
             ->getDoctrine()
             ->getManager();
 
-        $UserRepository = $em->getRepository("UserBundle:User");
-        $users = $UserRepository->findAllUserOrderByName();
+        $supportRequestRepository = $em->getRepository("AdminBundle:SupportRequest");
+        $requestAdminGameRepository = $em->getRepository("ParticipantBundle:requestAdminGame");
 
-        return $this->render('AdminBundle:Default:index.html.twig', array(
-            "users" => $users
+        $nbSupportRequestNotDone = $supportRequestRepository->countSupportRequestNotDone();
+        $nbRequestAdminNotDone = $requestAdminGameRepository->countRequestNotDone();
+
+        return $this->render("AdminBundle:Default:dashboard.html.twig", array(
+            "nbSupportRequest" => $nbSupportRequestNotDone,
+            "nbRequestAdmin" => $nbRequestAdminNotDone
         ));
     }
 }

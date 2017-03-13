@@ -1,31 +1,55 @@
 <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
     <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_list_game') }}">Liste des jeux </a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Jeux
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ path('admin_list_game') }}">Lister</a>
+                <a class="dropdown-item" href="{{ path('admin_add_game') }}">Ajouter</a>
+            </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_add_game') }}">Ajouter un jeu</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Utilisateurs
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ path('admin_list_user') }}">Lister</a>
+                <a class="dropdown-item" href="{{ path('admin_add_user') }}">Ajouter</a>
+            </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_dashboard') }}">Liste les utilisateurs</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Plateformes
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ path('admin_list_platform') }}">Lister</a>
+                <a class="dropdown-item" href="{{ path('admin_add_platform') }}">Ajouter</a>
+            </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_list_platform') }}">Liste les plateformes</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Requetes
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ path('admin_list_request') }}">Ajout de jeu</a>
+                <a class="dropdown-item" href="{{ path('admin_support_request') }}">Requête support</a>
+            </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_add_platform') }}">Ajouter une plateforme</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_add_user') }}">Ajouter un utilisateurs</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_list_request') }}">Lister les requêtes utilisateur</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_add_equipment') }}">Ajouter equipement</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('admin_add_equipment_type') }}">Ajouter type d'equipement</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Equipement
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ path('admin_add_equipment') }}">Equipement</a>
+                <a class="dropdown-item" href="{{ path('admin_add_equipment_type') }}">Type d'équipement</a>
+                <a class="dropdown-item" href="{{ path('admin_equipment_needed') }}">Equipement à preter</a>
+            </div>
         </li>
     </ul>
 </nav>

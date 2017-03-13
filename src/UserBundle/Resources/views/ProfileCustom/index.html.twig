@@ -1,0 +1,121 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/stuff.css') }}"/>
+{% endblock %}
+{% block body %}
+    {{ render(controller('UserBundle:Nav:navController', {"path" : "USER"})) }}
+    <div class="row">
+        {% include 'ParticipantBundle:Component:sideMenu.html.twig' %}
+        <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3">
+            <h1 class="col-lg-2">Profil</h1>
+            <section class="mx-auto row ">
+                <div class="row col-lg-12">
+                    <div class="col-lg-6">
+                        <div class=" form-check">
+                            {{ form_start(formEating) }}
+                            {{ form_widget(formEating.isEating,'Je mange à la LAN' {'attr' : {'class' : 'form-check-input'}}) }}
+                            {{ form_label(formEating.isEating) }}
+                            {{ form_widget(formEating.save, {'attr' : {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
+                            {{ form_rest(formEating) }}
+                            {{ form_end(formEating) }}
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <h2>Matériel apporté :</h2>
+                        <div class=" form-check">
+                            {{ form_start(formBringedEquipment) }}
+                            <label class="form-check-label">
+                                {{ form_label(formBringedEquipment.quantity, 'Quantite :') }}
+                                {{ form_widget(formBringedEquipment.quantity, {"attr" : {'class' : 'form-input'}}) }}
+                            </label><br/>
+                            <label class="form-check-label">
+                                {{ form_label(formBringedEquipment.equipment, 'Equipement') }}
+                                {{ form_widget(formBringedEquipment.equipment) }}
+                            </label><br/>
+                            {{ form_widget(formBringedEquipment.save, {'attr' : {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
+                            {{ form_rest(formBringedEquipment) }}
+                            {{ form_end(formBringedEquipment) }}
+                        </div>
+                    </div>
+                    <div class="row col-sm-12">
+                        <p>
+
+                        </p>
+                    </div>
+                    <div class="row col-sm-12">
+                        <h2>
+                            <span><a href="#" onclick="displayListOwn()" class="btn btn-primary"> MA LISTE</a></span>
+                            <span><a href="#" onclick="displayListAll()"
+                                     class="btn btn-primary"> LISTE GENERALE</a></span>
+                        </h2> <br/><br/>
+                    </div>
+                    <div id="listAll" class="fadeIn animated none row col-sm-12">
+                        {% if allBringedEquipment is not empty %}
+                            <table class="table text-center">
+                                <thead class="thead-default">
+                                <tr>
+                                    <th>Equipement</th>
+                                    <th>Quantite</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for oneBringedEquipment in allBringedEquipment %}
+                                    <tr>
+                                        <td>{{ oneBringedEquipment.equipment.equipmentType.wording }}
+                                            ({{ oneBringedEquipment.equipment.platform.wording }})
+                                        </td>
+                                        <td>{{ oneBringedEquipment.totalQuantity }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <div class="row">
+                                <h2>Il n'y a pas encore de matériel ramené</h2>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div id="listOwn" class="fadeIn animated row col-sm-12">
+                        {% if ownBringedEquipment is not empty %}
+                            <table class="table text-center">
+                                <thead class="thead-default">
+                                <tr>
+                                    <th>Equipement</th>
+                                    <th>Quantite</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for oneBringedEquipment in ownBringedEquipment %}
+                                    <tr id="own-{{ oneBringedEquipment.id }}">
+                                        <td>{{ oneBringedEquipment.equipment.equipmentType }}
+                                            ( {{ oneBringedEquipment.equipment.platform }} )
+                                        </td>
+                                        <td>{{ oneBringedEquipment.quantity }}</td>
+                                        <td>
+                                            <a href="{{ path('user_equipement_modify_bringed', {'bringed' : oneBringedEquipment.id }) }}"
+                                               class="btn btn-primary">Modifier</a>
+                                            <a href="#" onclick="removeEquipmentBringed({{ oneBringedEquipment.id }})"
+                                               class="btn btn-primary">Supprimer</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <div class="row">
+                                <h2>Vous n'avez pas encore enregistré de matériel</h2>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {% for message in app.session.flashbag.get('notice') %}
+        $.notify("{{ message }}", "success");
+    {% endfor %}
+{% endblock %}

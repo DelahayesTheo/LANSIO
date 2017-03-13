@@ -26,6 +26,7 @@ class DefaultController extends Controller
             $form = $this->createForm(new firstConnection(), $user);
 
             if($form->handleRequest($request)->isValid()) {
+                $user->setIsComing(true);
                 $user->setHasDefinedRequired(true);
                 $em->persist($user);
                 $em->flush();
@@ -35,6 +36,18 @@ class DefaultController extends Controller
                 ));
             }
         }
-        return $this->render('ParticipantBundle:Default:index.html.twig');
+        return $this->render('ParticipantBundle:Default:index.html.twig', array(
+            "user" => $user
+        ));
+    }
+
+    /**
+     * @Route("/en-cours-de-construction/",
+     *     name="user_in_construction")
+     * @Security("is_granted('ROLE_USER')")
+     */
+    public function inConstructionAction()
+    {
+        return $this->render('ParticipantBundle:Component:inConstruction.html.twig');
     }
 }

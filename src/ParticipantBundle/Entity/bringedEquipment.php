@@ -30,12 +30,12 @@ class bringedEquipment
     private $quantity;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AdminBundle\Entity\Equipment", mappedBy="bringed")
+     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Equipment", inversedBy="bringed",cascade={"persist", "remove"})
      */
     private $equipment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="bringedEquipment")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="bringedEquipment",cascade={"persist"})
      */
     private $user;
 
@@ -53,7 +53,7 @@ class bringedEquipment
     public function setEquipment($equipment)
     {
         $equipment->setBringed($this);
-        $this->equipment[] = $equipment;
+        $this->equipment = $equipment;
     }
 
     /**
@@ -69,7 +69,7 @@ class bringedEquipment
      */
     public function setUser($user)
     {
-        $user->addBringedEquipment($this);
+        $user->setBringedEquipment($this);
         $this->user = $user;
     }
 

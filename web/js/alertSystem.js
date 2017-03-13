@@ -23,6 +23,6 @@ function alertOnDelete(path, id)
                 $("#request-"+id).remove();
             });
         }
-    })
+    });
     return false;
 }

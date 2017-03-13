@@ -14,7 +14,26 @@ use FOS\UserBundle\Event\GetResponseUserEvent;
 class UserController extends Controller
 {
     /**
-     * @Route("/ajouter-utilisateur",
+     * @Route("/lister-utilisateurs/",
+     * name="admin_list_user")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function indexAction()
+    {
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+
+        $UserRepository = $em->getRepository("UserBundle:User");
+        $users = $UserRepository->findAllUserOrderByName();
+
+        return $this->render('AdminBundle:Default:index.html.twig', array(
+            "users" => $users
+        ));
+    }
+
+    /**
+     * @Route("/ajouter-utilisateur/",
      *     name="admin_add_user")
      * @Security("is_granted('ROLE_ADMIN')")
      */

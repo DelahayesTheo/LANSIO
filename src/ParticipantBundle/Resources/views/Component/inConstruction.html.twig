@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}"/>
+{% endblock %}
+{% block body %}
+    {{ render(controller('UserBundle:Nav:navController', {"path" : "USER"})) }}
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'ParticipantBundle:Component:sideMenu.html.twig' %}
+
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                <section class="mx-auto row text-center">
+                    <div class="row logo col-lg-12">
+                        <div class="col-lg-12">
+                            <h1>EN COURS DE CONSTRUCTION</h1>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}"/>
+{% endblock %}
+{% block body %}
+    {% include 'AdminBundle:component:topNavbar.html.twig' %}
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'AdminBundle:component:sideMenu.html.twig' %}
+
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                <h1>Liste du matériel à preter :</h1>
+
+                <section class="mx-auto row text-center">
+                    <div class="col-lg-offset-1 col-lg-10">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <td><b>Ecran</td>
+                            <td><b>Souris</td>
+                            <td><b>Clavier</td>
+                            <td><b>Cable réseau</td>
+                            </thead>
+
+                            <tr>
+                                <td>{{ equipmentNeeded.nbScreenNeeded }}</td>
+                                <td>{{ equipmentNeeded.nbMouseNeeded }}</td>
+                                <td>{{ equipmentNeeded.nbKeyboardNeeded }}</td>
+                                <td>{{ equipmentNeeded.nbNetworkCableNeeded }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+
+
+            </main>
+
+        </div>
+    </div>
+{% endblock %}
