@@ -30,7 +30,7 @@ class bringedEquipment
     private $quantity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Equipment", inversedBy="bringed",cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="AdminBundle\Entity\Equipment", inversedBy="bringed",cascade={"persist"})
      */
     private $equipment;
 

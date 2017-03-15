@@ -10,8 +10,9 @@
     <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3">
         <h1 class="col-lg-2">JEUX</h1>
         <h2 class="col-lg-4">
-            <span><a href="#" onclick="displayList()" class="btn btn-primary"> LISTE DE JEU</a></span>
-            <span><a href="#" onclick="displayAskForm()"class="btn btn-primary"> DEMANDE D'AJOUT DE JEU</a></span>
+            <span><a href="#" onclick="displayList(); return false;" class="btn btn-primary"> LISTE DE JEU</a></span>
+            <span><a href="#" onclick="displayAskForm(); return false;"
+                     class="btn btn-primary"> DEMANDE D'AJOUT DE JEU</a></span>
         </h2>
         <section class="mx-auto row ">
             <div class="row col-lg-12">
@@ -20,7 +21,7 @@
                 </div>
             </div>
             <div id="list" class="fadeIn animated">
-                {{ render(controller('ParticipantBundle:Game:listGame')) }}
+                {{ render(controller('ParticipantBundle:Game:listGame', {'request' : request})) }}
             </div>
             <div id="form" class="fadeIn animated none">
                 {% include 'ParticipantBundle:Demande:askAdminGame.html.twig' %}

@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class GameController extends Controller
 {
     /**
@@ -69,16 +71,40 @@ class GameController extends Controller
      *     name="admin_list_game")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function listGameAction()
+    public function listGameAction(Request $request)
     {
         $em = $this
             ->getDoctrine()
             ->getManager();
         $gameRepository = $em->getRepository("AdminBundle:Game");
 
-        $games = $gameRepository->findAllGamesOrderByName();
+        $data = array();
+        $options = array();
+        $kinds = $gameRepository->findAllKind();
+        foreach ($kinds as $kind) {
+            $options[$kind['aKind']] = $kind['aKind'];
+        }
+        $research = $this->createFormBuilder($data)
+            ->add('name', TextType::class, array('required' => false))
+            ->add('kind', ChoiceType::class, array(
+                'choices' => $options
+            ,
+                'required' => false,
+                'group_by' => null,
+            ))
+            ->add('save', SubmitType::class)
+            ->getForm();
+
+        $research->handleRequest($request);
+        if ($research->isValid() && $research->isSubmitted()) {
+            $data = $research->getData();
+            $games = $gameRepository->findAllGamesResearch($data['name'], $data['kind']);
+        } else {
+            $games = $gameRepository->findAll();
+        }
 
         return $this->render('AdminBundle:Game:list.html.twig', array(
+            'research' => $research->createView(),
             'games' => $games,
         ));
     }

@@ -1,14 +1,29 @@
 <div class="row discord col-lg-12">
+    <form class="form-inline col-lg-12 col-md-12" method="post">
+        {{ form_label(research.name, 'Nom : ') }}
+        {{ form_widget(research.name, {'attr' : {'class' : 'form-control mb-2 mr-sm-2 mb-sm-0'}}) }}
+
+        {{ form_label(research.kind, 'Genre : ') }}
+        {{ form_widget(research.kind, {'attr' : {'class' : 'form-control mb-2 mr-sm-2 mb-sm-0'}}) }}
+
+        {{ form_widget(research.save, {'attr' : {'class' : 'btn btn-primary'}, 'label' : 'Rechercher'}) }}
+
+        {{ form_rest(research) }}
+    </form>
     {% for game in games %}
         {% set playedOrNot = game.playedBy(user) %}
         <div class="col-lg-3 col-md-3">
             <div class="{% if playedOrNot %}active{% endif %}" id="choose-to-play-div-{{ game.id }}">
-                <img src="{{ asset('img/LOL.jpg') }}">
+                <img src="{{ asset('img/Game_Thumbnail_waiting.png') }}">
                 <h3>{{ game.name }}
                     {% if playedOrNot %}
-                        <a href="#" id="choose-to-play-link-{{ game.id }}" onclick="removeGamePlayed({{ game.id }})"><img  class="plus"  src="{{ asset('img/minus-5-xxl.png') }}"></a>
+                        <a href="#" id="choose-to-play-link-{{ game.id }}"
+                           onclick="removeGamePlayed({{ game.id }}); return false"><img class="plus"
+                                                                                        src="{{ asset('img/minus-5-xxl.png') }}"></a>
                     {% else %}
-                        <a href="#"  id="choose-to-play-link-{{ game.id }}" onclick="chooseToPlay({{ game.id }})"><img  class="plus"  src="{{ asset('img/plus-5-xxl.png') }}"></a>
+                        <a href="#" id="choose-to-play-link-{{ game.id }}"
+                           onclick="chooseToPlay({{ game.id }}); return false"><img class="plus"
+                                                                                    src="{{ asset('img/plus-5-xxl.png') }}"></a>
 
                     {% endif %}
                 </h3>

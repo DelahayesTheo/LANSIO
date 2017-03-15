@@ -8,7 +8,11 @@ use ParticipantBundle\Form\Type\requestAdminGameType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
+
 class GameController extends Controller
 {
     /**
@@ -21,6 +25,7 @@ class GameController extends Controller
         $em = $this
             ->getDoctrine()
             ->getManager();
+
         $requestAdminGame = new requestAdminGame();
         $user = $this->getUser();
         $form = $this->createForm(new requestAdminGameType(), $requestAdminGame);
@@ -38,15 +43,17 @@ class GameController extends Controller
         }
 
         return $this->render("ParticipantBundle:Game:index.html.twig",array(
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "request" => $request
     ));
     }
     /**
-     * @Route(name="user_list_game",
+     * @Route("/test/",
+     *     name="user_list_game",
      *     options={"expose" = true})
      * @Security("is_granted('ROLE_USER')")
      */
-    public function listGameAction()
+    public function listGameAction(Request $request)
     {
         $em = $this
             ->getDoctrine()
@@ -54,9 +61,34 @@ class GameController extends Controller
 
         $user = $this->getUser();
         $gameRepository = $em->getRepository("AdminBundle:Game");
-        $games = $gameRepository->findAll();
+
+        $data = array();
+        $options = array();
+        $kinds = $gameRepository->findAllKind();
+        foreach ($kinds as $kind) {
+            $options[$kind['aKind']] = $kind['aKind'];
+        }
+        $research = $this->createFormBuilder($data)
+            ->add('name', TextType::class, array('required' => false))
+            ->add('kind', ChoiceType::class, array(
+                'choices' => $options
+            ,
+                'required' => false,
+                'group_by' => null,
+            ))
+            ->add('save', SubmitType::class)
+            ->getForm();
+
+        $research->handleRequest($request);
+        if ($research->isValid() && $research->isSubmitted()) {
+            $data = $research->getData();
+            $games = $gameRepository->findAllGamesResearch($data['name'], $data['kind']);
+        } else {
+            $games = $gameRepository->findAll();
+        }
 
         return $this->render("ParticipantBundle:Game:list.html.twig", array(
+            "research" => $research->createView(),
             "games" => $games,
             "user" => $user
         ));

@@ -1,50 +1,63 @@
 {% extends '::base.html.twig' %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}"/>
+{% endblock %}
 {% block body %}
-    {% include 'AdminBundle:component:sideMenu.html.twig' %}
-    <h3>Modifier un jeu :</h3>
-    <form class="form-horizontal" method="post" role="form">
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.name, 'Nom du jeu') }}
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.name) }}
-            </div>
+    {% include 'AdminBundle:component:topNavbar.html.twig' %}
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'AdminBundle:component:sideMenu.html.twig' %}
+
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                <h1>Modifier un jeu :</h1>
+
+                <section class="mx-auto row text-center">
+                    <form class="form-horizontal" method="post" role="form">
+                        <div class="form-group">
+                            <div class="control-label col-sm-3">
+                                {{ form_label(form.name, 'Nom du jeu') }}
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.name) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-sm-3">
+                                {{ form_label(form.platform, 'Plateforme') }}
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="col-sm-6">
+                                    {% for choice in form.platform %}
+                                        {{ form_widget(choice) }}&nbsp {{ form_label(choice) }} &nbsp &nbsp
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-sm-3">
+                                {{ form_label(form.nbMaxPlayer, 'Nombre maximum de joueur') }}
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.nbMaxPlayer) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="control-label col-sm-3">
+                                {{ form_label(form.kind, 'Genre du jeu') }}
+                            </div>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.kind) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9 ">
+                                {{ form_widget(form.save, {'attr': {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
+                            </div>
+                        </div>
+                        {{ form_rest(form) }}
+                    </form> <!-- /form -->
+                </section>
+            </main>
         </div>
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.platform, 'Plateforme') }}
-            </div>
-            <div class="col-sm-9">
-                <div class="col-sm-6">
-                    {% for choice in form.platform %}
-                        {{ form_widget(choice) }}&nbsp {{ form_label(choice) }} &nbsp &nbsp
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.nbMaxPlayer, 'Nombre maximum de joueur') }}
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.nbMaxPlayer) }}
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="control-label col-sm-3">
-                {{ form_label(form.kind, 'Genre du jeu') }}
-            </div>
-            <div class="col-sm-9">
-                {{ form_widget(form.kind) }}
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9 ">
-                {{ form_widget(form.save, {'attr': {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
-            </div>
-        </div>
-        {{ form_rest(form) }}
-    </form> <!-- /form -->
+    </div>
 {% endblock %}

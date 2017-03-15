@@ -6,7 +6,7 @@ function chooseToPlay(idGame)
         $gameSelectedLink = $("#choose-to-play-link-"+ idGame);
         $gameSelectedDiv = $("#choose-to-play-div-"+ idGame);
         $plusOrMinus = $("#choose-to-play-link-"+ idGame +" img");
-        $gameSelectedLink.attr("onclick", "removeGamePlayed("+ idGame +")");
+        $gameSelectedLink.attr("onclick", "removeGamePlayed(" + idGame + "); return false");
         $gameSelectedDiv.addClass("active");
         $plusOrMinus.attr("src","/img/minus-5-xxl.png");
         var counter = parseInt($gameSelectedCounter.text());
@@ -33,7 +33,7 @@ function removeGamePlayed(idGame)
                 $gameSelectedLink = $("#choose-to-play-link-" + idGame);
                 $gameSelectedDiv = $("#choose-to-play-div-"+ idGame);
                 $plusOrMinus = $("#choose-to-play-link-"+ idGame +" img");
-                $gameSelectedLink.attr("onclick", "chooseToPlay(" + idGame + ")");
+                $gameSelectedLink.attr("onclick", "chooseToPlay(" + idGame + "); return false");
                 $gameSelectedDiv.removeClass("active");
                 $plusOrMinus.attr("src","/img/plus-5-xxl.png");
                 var counter = parseInt($gameSelectedCounter.text());
@@ -59,10 +59,4 @@ function displayAskForm()
     $list.addClass("none");
     $form.removeClass("none");
     return false;
-}
-function emptyGameRequestFields()
-{
-    $("#request_admin_game_name").attr("value", null);
-    $("#request_admin_game_kind").attr("value", null);
-    $("#request_admin_game_nbMaxPlayer").attr("value", null);
 }
