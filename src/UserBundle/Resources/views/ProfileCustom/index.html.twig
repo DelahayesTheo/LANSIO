@@ -13,7 +13,7 @@
                     <div class="col-lg-6">
                         <div class=" form-check">
                             {{ form_start(formEating) }}
-                            {{ form_widget(formEating.isEating,'Je mange à la LAN' {'attr' : {'class' : 'form-check-input'}}) }}
+                            {{ form_widget(formEating.isEating, {'attr' : {'class' : 'form-check-input'}}) }}
                             {{ form_label(formEating.isEating) }}
                             {{ form_widget(formEating.save, {'attr' : {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
                             {{ form_rest(formEating) }}
