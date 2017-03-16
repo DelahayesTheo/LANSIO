@@ -3,7 +3,6 @@
 namespace ParticipantBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use AdminBundle\Entity\Equipment;
 /**
  * bringedEquipmentRepository
  *

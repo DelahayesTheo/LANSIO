@@ -2,7 +2,6 @@
 namespace AdminBundle\Command;
 
 use AdminBundle\Entity\Game;
-use AdminBundle\Entity\Platform;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

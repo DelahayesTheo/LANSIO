@@ -1,17 +1,12 @@
 <?php
 namespace ParticipantBundle\Form\Type;
 
-use AdminBundle\Repository\EquipmentRepository;
 use ParticipantBundle\Entity\bringedEquipment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Doctrine\ORM\EntityRepository;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use AdminBundle\Repository\PlatformRepository;
 
 
 class bringedEquipmentModifyType extends AbstractType

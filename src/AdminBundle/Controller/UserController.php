@@ -3,12 +3,10 @@
 namespace AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use UserBundle\Entity\User;
 use UserBundle\Form\Type\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 
 class UserController extends Controller

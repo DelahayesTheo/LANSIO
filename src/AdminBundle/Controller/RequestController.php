@@ -54,7 +54,7 @@ class RequestController extends Controller
      *     name="admin_accept_request_game")
      * @Security("is_granted('ROLE_ADMIN')")
      */
-    public function acceptRequestGame(requestAdminGame $requestGame, Request $request)
+    public function acceptRequestGameAction(requestAdminGame $requestGame, Request $request)
     {
         $successMessage = null;
         $em = $this
