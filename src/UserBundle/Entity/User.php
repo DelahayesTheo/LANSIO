@@ -25,7 +25,7 @@ class User extends BaseUser
     protected $isComing;
 
     /**
-     * @ORM\Column(name="cohort", type="string", length=255)
+     * @ORM\Column(name="cohort", type="string", length=255, nullable=true)
      */
     private $cohort;
     /**
