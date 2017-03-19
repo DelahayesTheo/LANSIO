@@ -1,0 +1,118 @@
+body {
+    padding-top: 50px;
+    background-color: #2C2F33;
+    color: #fff;
+}
+
+.titleGuest {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    border-bottom: 4px solid #7289DA;
+    text-align: left;
+    padding-bottom: 1rem;
+    margin-left: 3rem;
+}
+
+.form-guest {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.form-input-text {
+    background-color: #2C2F33;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #7289D1;
+    border-radius: 0;
+    color: #fff;
+}
+
+.form-input-text:focus {
+    background-color: #2C2F33;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #7289D1;
+    border-radius: 0;
+    color: #fff;
+}
+
+.form-guest .form-check-label {
+    margin-top: 1rem;
+}
+
+.form-guest .form-check-label input {
+    margin-right: 1rem;
+}
+
+.form-guest button {
+    font-size: 1.3rem;
+    margin-bottom: 8rem;
+    background-color: #7289DA;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+}
+
+.form-guest button:hover {
+    background-color: #fff;
+    color: #2C2F33;
+}
+
+.linkGuest {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    padding: 1.5rem 0 1.5rem 0;
+    border: 2px solid #7289DA;
+    border-radius: 10px;
+    background-color: #2C2F33;
+    display: block;
+    color: #fff;
+}
+
+.linkActive {
+    background-color: #7289D1;
+}
+
+.linkGuest:hover, .linkGuest:focus {
+    text-decoration: none;
+    background-color: #7289D1;
+}
+
+.linkDelete:hover, .linkDelete:hover {
+    text-decoration: none;
+    background-color: red;
+}
+
+.noGuest h1, h2 {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+main p {
+    text-align: center;
+}
+
+main .noGuest form {
+    margin-top: 8rem;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main .noGuest form .btn-primary {
+    background-color: #7289DA;
+    border-color: #fff;
+    margin-top: 3rem;
+}
+
+main .noGuest form .btn-primary:hover {
+    background-color: #fff;
+    color: #7289DA;
+    border-color: #fff;
+}
+

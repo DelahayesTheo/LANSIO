@@ -1,20 +1,21 @@
 <?php
-namespace ParticipantBundle\Form\Type;
 
-use ParticipantBundle\Entity\bringedEquipment;
+namespace UserBundle\Form\Type;
+
+use UserBundle\Entity\Invite;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-
-class bringedEquipmentModifyType extends AbstractType
+class InviteType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantity', IntegerType::class)
+            ->add('lastName', TextType::class)
+            ->add('firstName', TextType::class)
             ->add('save', SubmitType::class, array('label' => 'Create Post'))
             ->getForm();
     }
@@ -22,7 +23,7 @@ class bringedEquipmentModifyType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => bringedEquipment::class,
+            'data_class' => Invite::class,
         ));
     }
 }

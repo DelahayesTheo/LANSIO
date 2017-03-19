@@ -13,8 +13,9 @@
         ]
     },
     "require": {
+        "composer/composer": "dev-master",
         "php": ">=5.3.9",
-        "twig/twig": "2.x-dev",
+        "twig/twig": "1.x-dev",
         "symfony/symfony": "2.8.*",
         "doctrine/orm": "^2.4.8",
         "doctrine/doctrine-bundle": "~1.4",

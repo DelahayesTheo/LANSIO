@@ -41,9 +41,32 @@ class Game
      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", mappedBy="gamesPlayed")
      */
     private $usersPlaying;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\Invite", mappedBy="gamesPlayedGuest")
+     */
+    private $guestsPlaying;
+
+    /**
+     * @return mixed
+     */
+    public function getGuestsPlaying()
+    {
+        return $this->guestsPlaying;
+    }
+
+    /**
+     * @param mixed $guestsPlaying
+     */
+    public function setGuestsPlaying($guestsPlaying)
+    {
+        $this->guestsPlaying->add($guestsPlaying);
+    }
+
     public function __construct()
     {
         $this->usersPlaying = new ArrayCollection();
+        $this->guestsPlaying = new ArrayCollection();
     }
 
     public function removeUsersPlaying($user)
@@ -56,6 +79,15 @@ class Game
     public function isPlayedBy($user)
     {
         return $this->usersPlaying->contains($user);
+    }
+
+    /**
+     * @param $guest
+     * @return bool
+     */
+    public function isPlayedGuest($guest)
+    {
+        return $this->guestsPlaying->contains($guest);
     }
     /**
      * @return mixed

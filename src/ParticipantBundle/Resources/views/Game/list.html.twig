@@ -1,5 +1,5 @@
 <div class="row discord col-lg-12">
-    <form class="form-inline col-lg-12 col-md-12" method="post">
+    <form class="form-inline col-lg-12 col-md-12" style="margin-bottom:1rem;" method="post">
         {{ form_label(research.name, 'Nom : ') }}
         {{ form_widget(research.name, {'attr' : {'class' : 'form-control mb-2 mr-sm-2 mb-sm-0'}}) }}
 
@@ -18,12 +18,12 @@
                 <h3>{{ game.name }}
                     {% if playedOrNot %}
                         <a href="#" id="choose-to-play-link-{{ game.id }}"
-                           onclick="removeGamePlayed({{ game.id }}); return false"><img class="plus"
-                                                                                        src="{{ asset('img/minus-5-xxl.png') }}"></a>
+                           onclick="removeGamePlayed({{ game.id }}, 'USER'); return false"><img class="plus"
+                                                                                                src="{{ asset('img/minus-5-xxl.png') }}"></a>
                     {% else %}
                         <a href="#" id="choose-to-play-link-{{ game.id }}"
-                           onclick="chooseToPlay({{ game.id }}); return false"><img class="plus"
-                                                                                    src="{{ asset('img/plus-5-xxl.png') }}"></a>
+                           onclick="chooseToPlay({{ game.id }}, 'USER'); return false"><img class="plus"
+                                                                                            src="{{ asset('img/plus-5-xxl.png') }}"></a>
 
                     {% endif %}
                 </h3>

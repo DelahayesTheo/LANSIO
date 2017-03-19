@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/guest.css') }}"/>
+{% endblock %}
+{% block body %}
+    {{ render(controller('UserBundle:Nav:navController', {"path" : "USER"})) }}
+    <div class="row">
+        {% include 'ParticipantBundle:Component:sideMenu.html.twig' %}
+        <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3 noGuest">
+            <h1 class="col-lg-12">VOUS N'AVEZ PAS D'INVITE</h1>
+            <section class="mx-auto row ">
+                <h2 class="col-lg-12">Inviter un ami :</h2>
+                <form method="post" class="form-guest col-lg-12">
+                    <div class="form-group offset-lg-5 col-lg-2">
+                        {{ form_label(form.lastName, "Nom de l'invite") }}
+                        {{ form_widget(form.lastName, {'attr' : {'class' : 'form-control form-input-text'}}) }}
+                    </div>
+                    <div class="form-group offset-lg-5  col-lg-2">
+                        {{ form_label(form.firstName, 'Prenom de l\'invite') }}
+                        {{ form_widget(form.firstName, {'attr' : {'class' : 'form-control form-input-text'}}) }}
+                    </div>
+                    <div class="mx-auto col-lg-offset-4 col-lg-4">
+                        {{ form_widget(form.save, {'label' : 'Inviter'}) }}
+                    </div>
+                    {{ form_rest(form) }}
+                </form>
+            </section>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {% for message in app.session.flashbag.get('notice') %}
+        $.notify("{{ message }}", "success");
+    {% endfor %}
+{% endblock %}

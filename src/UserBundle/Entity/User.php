@@ -25,14 +25,13 @@ class User extends BaseUser
     protected $isComing;
 
     /**
+     * @ORM\Column(name="cohort", type="string", length=255)
+     */
+    private $cohort;
+    /**
      * @ORM\Column(name="isEating", type="boolean", nullable=true)
      */
     protected $isEating;
-
-    /**
-     * @ORM\Column(name="hasGuest", type="boolean", nullable=true)
-     */
-    protected $hasGuest;
 
     /**
      * @ORM\Column(name="needScreen", type="boolean", nullable=true)
@@ -63,6 +62,37 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="AdminBundle\Entity\SupportRequest", mappedBy="user")
      */
     protected $supportRequests;
+
+    /**
+     * @ORM\OneToOne(targetEntity="UserBundle\Entity\Invite", cascade={"remove"})
+     */
+    protected $invite;
+
+    /**
+     * @ORM\Column(name="hasDefinedRequired", type="boolean", nullable=true)
+     */
+    protected $hasDefinedRequired;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AdminBundle\Entity\Game", inversedBy="usersPlaying")
+     */
+    protected $gamesPlayed;
+
+    /**
+     * @return mixed
+     */
+    public function getCohort()
+    {
+        return $this->cohort;
+    }
+
+    /**
+     * @param mixed $cohort
+     */
+    public function setCohort($cohort)
+    {
+        $this->cohort = $cohort;
+    }
 
     /**
      * @return mixed
@@ -130,16 +160,6 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\Column(name="hasDefinedRequired", type="boolean", nullable=true)
-     */
-    protected $hasDefinedRequired;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="AdminBundle\Entity\Game", inversedBy="usersPlaying")
-     */
-    protected $gamesPlayed;
-
-    /**
      * @return mixed
      */
     public function getGamesPlayed()
@@ -182,6 +202,23 @@ class User extends BaseUser
     /**
      * @return mixed
      */
+    public function getInvite()
+    {
+        return $this->invite;
+    }
+
+    /**
+     * @param mixed $invite
+     */
+    public function setInvite($invite)
+    {
+        $this->invite = $invite;
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function getIsEating()
     {
         return $this->isEating;
@@ -198,18 +235,11 @@ class User extends BaseUser
     /**
      * @return mixed
      */
-    public function getHasGuest()
+    public function hasGuest()
     {
-        return $this->hasGuest;
+        return !is_null($this->invite);
     }
 
-    /**
-     * @param mixed $hasGuest
-     */
-    public function setHasGuest($hasGuest)
-    {
-        $this->hasGuest = $hasGuest;
-    }
 
     /**
      * @return mixed
