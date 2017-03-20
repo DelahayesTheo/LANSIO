@@ -20,6 +20,16 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
+     */
+    protected $firstName;
+
+    /**
+     * @ORM\Column(name="lastName", type="string", length=255, nullable=true)
+     */
+    protected $lastName;
+
+    /**
      * @ORM\Column(name="isComing", type="boolean", nullable=true, options={"default"=false})
      */
     protected $isComing;

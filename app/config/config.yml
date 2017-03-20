@@ -76,3 +76,7 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+services:
+    import.csvtoarray:
+        class: AdminBundle\Services\ConvertCsvToArray
+

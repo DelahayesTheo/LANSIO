@@ -26,13 +26,24 @@ class DefaultController extends Controller
             $form = $this->createForm(new firstConnection(), $user);
 
             if($form->handleRequest($request)->isValid()) {
+                $verifUser = $em
+                    ->getRepository('UserBundle:User')
+                    ->findOneBy(array('username' => $user->getUsername()));
+
+                if ($verifUser) {
+                    return $this->render('ParticipantBundle:Required:require_info.html.twig', array(
+                        "form" => $form->createView(),
+                        "message" => "Ce nom d'utilisateur est déjà pris"
+                    ));
+                }
                 $user->setIsComing(true);
                 $user->setHasDefinedRequired(true);
                 $em->persist($user);
                 $em->flush();
             } else {
                 return $this->render('ParticipantBundle:Required:require_info.html.twig', array(
-                    "form" => $form->createView()
+                    "form" => $form->createView(),
+                    "message" => null
                 ));
             }
         }

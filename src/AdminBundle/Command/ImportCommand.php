@@ -56,24 +56,30 @@ class ImportCommand extends ContainerAwareCommand
 
         // Processing on each row of data
         foreach ($data as $row) {
+            $username = strtolower(str_replace(" ", "", $row['lastname']) . '.' . str_replace(" ", "", $row['firstname']));
+            $bytes = openssl_random_pseudo_bytes(4);
+            $pwd = bin2hex($bytes);
+            $user = $this
+                ->getContainer()
+                ->get('fos_user.util.user_manipulator')
+                ->create($username, $pwd, $row['email'], 1, 0);
 
-            $user = $em->getRepository('UserBundle:User')
-                ->findOneByEmail($row['email']);
+            $user = $em
+                ->getRepository('UserBundle:User')
+                ->findOneBy(array('username' => $username));
 
-            // If the user doest not exist we create one
-            if (!is_object($user)) {
-                $user = new User();
-                $user->setEmail($row['email']);
-            }
+            $user->setCohort($row['cohort']);
 
-            // Updating info
-            $user->setUsername($row['username']);
-
-            // Do stuff here !
-
-            // Persisting the current user
-            $em->persist($user);
-
+            $message = \Swift_Message::newInstance()
+                ->setSubject('site de la lan des sios')
+                ->setFrom('lan2017@sio57.info')
+                ->setTo($row['email'])
+                ->setBody(
+                    $this->getContainer()->get('templating')->render('Emails/registration.html.twig', array('password' => $pwd, 'username' => $username)),
+                    'text/html'
+                );
+            $this->getContainer()->get('mailer')->send($message);
+            
             // Each 20 users persisted we flush everything
             if (($i % $batchSize) === 0) {
 
@@ -104,7 +110,7 @@ class ImportCommand extends ContainerAwareCommand
     protected function get(InputInterface $input, OutputInterface $output)
     {
         // Getting the CSV from filesystem
-        $fileName = 'web/uploads/import/users.csv';
+        $fileName = 'web/component/eleves2017.csv';
 
         // Using service for converting CSV to PHP Array
         $converter = $this->getContainer()->get('import.csvtoarray');

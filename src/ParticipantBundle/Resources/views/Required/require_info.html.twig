@@ -1,49 +1,85 @@
 {% extends '::base.html.twig' %}
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/stuff.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/require.css') }}"/>
 {% endblock %}
-{% block body %}
-    {{ render(controller('UserBundle:Nav:navController', {"path" : "USER"})) }}
-    <div class="row">
-        <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3">
-            <h1 class="col-lg-3">INFOS DE BASES :</h1>
-            <section class="mx-auto row ">
-                <div class="row col-lg-12">
-                        <div class=" form-check">
+                    {% block body %}
+                        <div class="container primary-div">
+                            <div class="row">
+                                <h1>Formulaire de première connexion :</h1>
+                            </div>
                             {{ form_start(form) }}
-                            <label class="form-check-label">
-                                {{ form_widget(form.isEating,{'attr' : {'class' : 'form-check-input'}}) }}
-                                {{ form_label(form.isEating, 'Je commande une pizza à la LAN') }}
-                            </label><br/>
-                            <label class="form-check-label">
-                                {{ form_widget(form.needScreen, {'attr' : {'class' : 'form-check-input'}}) }}
-                                {{ form_label(form.needScreen, "J'ai besoin d'un écran") }}
-                            </label><br/>
-                            <label class="form-check-label">
-                                {{ form_widget(form.needMouse, {'attr' : {'class' : 'form-check-input'}}) }}
-                                {{ form_label(form.needMouse, "J'ai besoin d'une souris") }}
-                            </label><br/>
-                            <label class="form-check-label">
-                                {{ form_widget(form.needKeyboard, {'attr' : {'class' : 'form-check-input'}}) }}
-                                {{ form_label(form.needKeyboard, "J'ai besoin d'un clavier") }}
-                            </label><br/>
-                            <label class="form-check-label">
-                                {{ form_widget(form.needNetworkCable, {'attr' : {'class' : 'form-check-input'}}) }}
-                                {{ form_label(form.needNetworkCable, "J'ai besoin d'un cable ethernet") }}
-                            </label><br/>
-                            {{ form_widget(form.save, {'attr' : {'class' : 'btn btn-primary'}, 'label' : 'Valider'}) }}
-                            {{ form_rest(form) }}
-                            {{ form_end(form) }}
+                            <div class="row">
+                                <div class="col-lg-5 mx-auto">
+                                    <div class="form-group">
+                                        {{ form_label(form.username, 'Username') }}
+                                        {{ form_widget(form.username, {'attr' : {'class' : 'form-control'}}) }}
+                                        {% if message is not empty %}
+                                            <span class="text-danger">Cet identifiant est déjà pris</span>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ form_label(form.plainPassword.first, 'Mot de passe') }}
+                                        {{ form_widget(form.plainPassword.first, {'attr' : {'class' : 'form-control'}}) }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ form_label(form.plainPassword.second, 'Confimation mot de passe') }}
+                                        {{ form_widget(form.plainPassword.second, {'attr' : {'class' : 'form-control'}}) }}
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            {{ form_widget(form.isEating, {'attr' : {'class' : 'form-check-input'}}) }}
+                                            Manger sur place
+                                        </label>
+                                    </div>
+
+                                    <h2>Matériels</h2>
+                                    <p>Ce dont vous avez besoin</p>
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    {{ form_widget(form.needScreen, {'attr' : {'class' : 'form-check-input'}}) }}
+                                                    Ecran
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    {{ form_widget(form.needMouse, {'attr' : {'class' : 'form-check-input'}}) }}
+                                                    Souris
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    {{ form_widget(form.needKeyboard, {'attr' : {'class' : 'form-check-input'}}) }}
+                                                    Clavier
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    {{ form_widget(form.needNetworkCable, {'attr' : {'class' : 'form-check-input'}}) }}
+                                                    Câble réseau
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="mx-auto">
+                                            {{ form_widget(form.save, {'attr' : {'class' : 'btn'}, 'label' :"J'ai fini"}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-            </section>
-        </main>
-    </div>
-{% endblock %}
-{% block javascripts %}
-    <script type="text/javascript" src="{{ asset('js/equipment.js') }}"
-{% endblock %}
+                        </div>
+                        {{ form_rest(form) }}
+                        {{ form_end(form) }}
+                        </div>
+                    {% endblock %}
 {% block scripts %}
     {% for message in app.session.flashbag.get('notice') %}
         $.notify("{{ message }}", "success");
