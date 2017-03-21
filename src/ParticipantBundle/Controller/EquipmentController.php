@@ -48,25 +48,32 @@ class EquipmentController extends Controller
         $formBringedEquipment->handleRequest($request);
         if($formBringedEquipment->isValid() && $formBringedEquipment->isSubmitted()) {
             $verif = $bringedEquipmentRepository->findOneBy(array('user' => $user, 'equipment' => $bringedEquipment->getEquipment()));
-
-            if (empty($verif)) {
-                $bringedEquipment->setUser($user);
-                $bringedEquipment->setEquipment($bringedEquipment->getEquipment());
-                $em->persist($bringedEquipment);
-                $em->flush();
-                $this->addFlash(
-                    'notice',
-                    "L'équipement ramené est enregistré"
-                );
+            if ($bringedEquipment->getQuantity() >= 0) {
+                if (empty($verif)) {
+                    $bringedEquipment->setUser($user);
+                    $bringedEquipment->setEquipment($bringedEquipment->getEquipment());
+                    $em->persist($bringedEquipment);
+                    $em->flush();
+                    $this->addFlash(
+                        'notice',
+                        "L'équipement ramené est enregistré"
+                    );
+                } else {
+                    $verif->setQuantity($verif->getQuantity() + $bringedEquipment->getQuantity());
+                    $em->persist($verif);
+                    $em->flush();
+                    $this->addFlash(
+                        'notice',
+                        "La quantité à été mise à jour"
+                    );
+                }
             } else {
-                $verif->setQuantity($verif->getQuantity() + $bringedEquipment->getQuantity());
-                $em->persist($verif);
-                $em->flush();
                 $this->addFlash(
                     'notice',
-                    "La quantité à été mise à jour"
+                    'Ramenez rien ou moins ?'
                 );
             }
+
             return $this->redirectToRoute('user_equipment', array('request'=>null));
         }
         return $this->render("ParticipantBundle:Equipment:index.html.twig", array(
