@@ -48,7 +48,7 @@ class EquipmentController extends Controller
         $formBringedEquipment->handleRequest($request);
         if($formBringedEquipment->isValid() && $formBringedEquipment->isSubmitted()) {
             $verif = $bringedEquipmentRepository->findOneBy(array('user' => $user, 'equipment' => $bringedEquipment->getEquipment()));
-            if ($bringedEquipment->getQuantity() >= 0) {
+            if ($bringedEquipment->getQuantity() > 0) {
                 if (empty($verif)) {
                     $bringedEquipment->setUser($user);
                     $bringedEquipment->setEquipment($bringedEquipment->getEquipment());
