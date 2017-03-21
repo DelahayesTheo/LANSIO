@@ -62,7 +62,7 @@ class namingImportCommand extends ContainerAwareCommand
                 ->getRepository('UserBundle:User')
                 ->findOneBy(array('email' => $row['email']));
 
-            $user->setFirstName($row['firstName']);
+            $user->setFirstName($row['firstname']);
             $user->setLastName($row['lastname']);
             // Each 20 users persisted we flush everything
             if (($i % $batchSize) === 0) {
