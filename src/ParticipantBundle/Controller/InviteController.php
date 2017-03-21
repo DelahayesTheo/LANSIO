@@ -69,7 +69,7 @@ class InviteController extends Controller
 
             $this->addFlash(
                 'notice',
-                'Votre inviter est enregistré'
+                'Votre invité est enregistré'
             );
 
             return $this->redirectToRoute('user_guest');

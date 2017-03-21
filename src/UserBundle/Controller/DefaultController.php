@@ -22,11 +22,13 @@ class DefaultController extends Controller
         $countUser = $userRepository->countAllUser();
         $countEating = $userRepository->countAllUserEating();
         $countGame = $gameRepository->countGamePlayed();
+        $countGuest = $userRepository->countAllGuest();
 
         return $this->render('UserBundle:Default:index.html.twig', array(
             "nbUsers" => $countUser,
             "nbPizza" => $countEating,
-            "nbGamePlayed" => $countGame
+            "nbGamePlayed" => $countGame,
+            "nbGuest" => $countGuest
         ));
     }
 }

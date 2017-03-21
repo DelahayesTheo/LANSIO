@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/game.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}"/>
+{% endblock %}
+{% block body %}
+    {{ render(controller('UserBundle:Nav:navController', {"path" : "USER"})) }}
+    <div class="row">
+        {% include 'ParticipantBundle:Component:sideMenu.html.twig' %}
+        <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3">
+            <h1 class="col-lg-4">PROFIL :</h1>
+            <section class="mx-auto row ">
+                <div class="col-lg-6">
+                    <ul class="list-unstyled" style="font-size : 1.5rem; line-height : 2.5rem;">
+                        <li>Nom : {{ user.lastName }}</li>
+                        <li>Prenom : {{ user.firstName }}</li>
+                        <li>Email : {{ user.email }}</li>
+                        <li>Username : {{ user.username }}</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    {{ form_start(form) }}
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            {{ form_widget(form.isEating, {'attr' : {'class' : 'form-check-input'}}) }}
+                            Je mange à la LAN &nbsp
+                            &nbsp {{ form_widget(form.save, {'attr' : {'class' : 'btn', 'style' : 'border: 1px solid lightblue; color: white; background-color : transparent;'}, 'label' :"Valider"}) }}
+                        </label>
+                    </div>
+                    {{ form_rest(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </section>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {% for message in app.session.flashbag.get('notice') %}
+        $.notify("{{ message }}", "success");
+    {% endfor %}
+{% endblock %}

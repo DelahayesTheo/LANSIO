@@ -79,7 +79,7 @@ class ImportCommand extends ContainerAwareCommand
                     'text/html'
                 );
             $this->getContainer()->get('mailer')->send($message);
-            
+
             // Each 20 users persisted we flush everything
             if (($i % $batchSize) === 0) {
 

@@ -31,6 +31,19 @@ class UserRepository extends EntityRepository
         return $result[0];
     }
 
+    public function findSumEquipmentGuest()
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('SUM(i.needScreen) as nbScreenNeeded, SUM(i.needMouse) as nbMouseNeeded, 
+            SUM(i.needKeyboard) as nbKeyboardNeeded, SUM(i.needNetworkCable) as nbNetworkCableNeeded')
+            ->from("UserBundle:Invite", "i");
+
+        $result = $query->getQuery()->getResult();
+        return $result[0];
+    }
+
     public function countAllUser()
     {
         $em = $this->getEntityManager();
@@ -40,6 +53,18 @@ class UserRepository extends EntityRepository
             ->from("UserBundle:User", "u")
             ->where("u.isComing = :true")
             ->setParameter("true", true);
+
+        $result = $query->getQuery()->getResult();
+        return $result[0][1];
+    }
+
+    public function countAllGuest()
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('COUNT(i.id)')
+            ->from("UserBundle:Invite", "i");
 
         $result = $query->getQuery()->getResult();
         return $result[0][1];
