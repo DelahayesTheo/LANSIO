@@ -16,6 +16,7 @@
                         <thead>
                         <td><b>Titre</b></td>
                         <td><b>Contenu</b></td>
+                        <td><b>Utilisateur</b></td>
                         <td><b>Actions</b></td>
                         </thead>
 
@@ -23,6 +24,9 @@
                             <tr id="request-{{ supportRequest.id }}">
                                 <td>{{ supportRequest.title }}</td>
                                 <td>{{ supportRequest.content }}</td>
+                                <td>{{ supportRequest.user.firstName }} {{ supportRequest.user.lastName }}
+                                    ({{ supportRequest.user.email }})
+                                </td>
                                 <td><a href="#" class="btn btn-primary" onclick="closeRequest({{ supportRequest.id }})"
                                        class="dropdown-item">Fermer la requête</a></li>
                                 </td>

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use AdminBundle\Entity\SupportRequest;
+use UserBundle\Entity\User;
 
 class SupportRequestController extends Controller
 {
@@ -40,6 +41,17 @@ class SupportRequestController extends Controller
         $em = $this
             ->getDoctrine()
             ->getManager();
+
+        $user = $support->getUser();
+        $message = \Swift_Message::newInstance()
+            ->setSubject('requete de support')
+            ->setFrom('lan2017@sio57.info')
+            ->setTo($user->getEmail())
+            ->setBody(
+                $this->get('templating')->render('Emails/supportRequestEmail.html.twig', array('supportRequest' => $support)),
+                'text/html'
+            );
+        $this->get('mailer')->send($message);
 
         $support->setStatus(1);
         $em->persist($support);
