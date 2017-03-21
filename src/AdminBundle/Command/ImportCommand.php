@@ -71,7 +71,7 @@ class ImportCommand extends ContainerAwareCommand
             $user->setCohort($row['cohort']);
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('site de la lan des sios')
+                ->setSubject('site de la lan des sios : relance')
                 ->setFrom('lan2017@sio57.info')
                 ->setTo($row['email'])
                 ->setBody(
