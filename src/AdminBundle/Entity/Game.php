@@ -94,6 +94,11 @@ class Game
     {
         $this->usersPlaying->removeElement($user);
     }
+
+    public function removeGuestsPlaying($user)
+    {
+        $this->guestsPlaying->removeElement($user);
+    }
     /**
      * @return boolean
      */

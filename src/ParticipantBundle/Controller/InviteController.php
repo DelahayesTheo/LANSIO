@@ -206,7 +206,8 @@ class InviteController extends Controller
             ->getUser()
             ->getInvite();
 
-        $em->remove($game);
+        $game->removeGuestsPlaying($invite);
+        $invite->removeGamePlayed($game);
         $em->flush();
 
         $this->addFlash(

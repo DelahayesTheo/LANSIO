@@ -81,6 +81,10 @@ class Invite
         $this->gamesPlayedGuest = new ArrayCollection();
     }
 
+    public function removeGamePlayed($game)
+    {
+        $this->gamesPlayedGuest->removeElement($game);
+    }
     /**
      * @return mixed
      */
