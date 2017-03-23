@@ -30,7 +30,7 @@ class DefaultController extends Controller
                     ->getRepository('UserBundle:User')
                     ->findOneBy(array('username' => $user->getUsername()));
 
-                if ($verifUser) {
+                if ($verifUser && $verifUser != $user) {
                     return $this->render('ParticipantBundle:Required:require_info.html.twig', array(
                         "form" => $form->createView(),
                         "message" => "Ce nom d'utilisateur est déjà pris"
