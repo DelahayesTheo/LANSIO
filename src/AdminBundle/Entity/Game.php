@@ -18,6 +18,11 @@ class Game
     private $id;
 
     /**
+     * @ORM\Column(name="pathToImg", type="string", length=255, nullable=true)
+     */
+    private $pathToImg;
+
+    /**
      * @ORM\Column(type="string", length=100)
      */
     private $name;
@@ -46,6 +51,22 @@ class Game
      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\Invite", mappedBy="gamesPlayedGuest")
      */
     private $guestsPlaying;
+
+    /**
+     * @return mixed
+     */
+    public function getPathToImg()
+    {
+        return $this->pathToImg;
+    }
+
+    /**
+     * @param mixed $pathToImg
+     */
+    public function setPathToImg($pathToImg)
+    {
+        $this->pathToImg = $pathToImg;
+    }
 
     /**
      * @return mixed

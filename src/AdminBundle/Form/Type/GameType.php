@@ -17,6 +17,7 @@ class GameType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('pathToImg', TextType::class)
             ->add('platform', EntityType::class, array(
                     'class' => 'AdminBundle:Platform',
                     'query_builder' => function(EntityRepository $er) {

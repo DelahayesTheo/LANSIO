@@ -14,7 +14,12 @@
         {% set playedOrNot = game.playedBy(user) %}
         <div class="col-lg-3 col-md-3">
             <div class="{% if playedOrNot %}active{% endif %}" id="choose-to-play-div-{{ game.id }}">
-                <img src="{{ asset('img/Game_Thumbnail_waiting.png') }}">
+                {% if game.pathToImg is null %}
+                    <img src="{{ asset('img/Game_Thumbnail_waiting.png') }}">
+                {% else %}
+                    {% set path = 'img/thumbnails/' ~  game.pathToImg %}
+                    <img src="{{ asset(path) }}">
+                {% endif %}
                 <h3>{{ game.name }}
                     {% if playedOrNot %}
                         <a href="#" id="choose-to-play-link-{{ game.id }}"
