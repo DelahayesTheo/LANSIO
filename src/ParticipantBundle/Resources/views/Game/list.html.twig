@@ -32,7 +32,9 @@
 
                     {% endif %}
                 </h3>
-                <p><span id="choose-to-play-counter-{{ game.id }}">{{ game.usersPlaying|length }}</span> {% if  game.usersPlaying|length <= 1 %} Joueur {% else %} Joueurs {% endif %}</p>
+                <p><span id="choose-to-play-counter-{{ game.id }}">
+                        <a href="{{ path('user_game_list_players', {'game' : game.id, 'path' : 'participant'}) }}">{{ game.usersPlaying|length  + game.guestsPlaying|length }}</a>
+                    </span> {% if  game.usersPlaying|length <= 1 %} Joueur {% else %} Joueurs {% endif %}</p>
             </div>
         </div>
     {% endfor %}

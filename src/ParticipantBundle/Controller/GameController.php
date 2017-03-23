@@ -134,4 +134,17 @@ class GameController extends Controller
 
         return $this->redirectToRoute("user_list_game");
     }
+
+    /**
+     * @Route("/lister_participant_jeu/{game}/{path}/",
+     *     name="user_game_list_players")
+     * @Security("is_granted('ROLE_USER')")
+     */
+    public function listPlayersAction(Game $game, $path)
+    {
+        return $this->render('ParticipantBundle:Game:listUsers.html.twig', array(
+            "game" => $game,
+            "path" => $path
+        ));
+    }
 }

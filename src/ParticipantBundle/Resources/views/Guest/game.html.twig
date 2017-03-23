@@ -27,7 +27,12 @@
                         {% set playedOrNot = game.isPlayedGuest(invite) %}
                         <div class="col-lg-3 col-md-3">
                             <div class="{% if playedOrNot %}active{% endif %}" id="choose-to-play-div-{{ game.id }}">
-                                <img src="{{ asset('img/Game_Thumbnail_waiting.png') }}">
+                                {% if game.pathToImg is null %}
+                                    <img src="{{ asset('img/Game_Thumbnail_waiting.png') }}">
+                                {% else %}
+                                    {% set path = 'img/thumbnails/' ~  game.pathToImg %}
+                                    <img src="{{ asset(path) }}">
+                                {% endif %}
                                 <h3>{{ game.name }}
                                     {% if playedOrNot %}
                                         <a href="#" id="choose-to-play-link-{{ game.id }}"
@@ -43,7 +48,9 @@
                                     {% endif %}
                                 </h3>
                                 <p>
-                                    <span id="choose-to-play-counter-{{ game.id }}">{{ game.usersPlaying|length + game.guestsPlaying|length }}</span> {% if  game.usersPlaying|length <= 1 %} Joueur {% else %} Joueurs {% endif %}
+                                    <span id="choose-to-play-counter-{{ game.id }}">
+                                       <a href="{{ path('user_game_list_players', {'game' : game.id, "path" : "invite"}) }}">{{ game.usersPlaying|length  + game.guestsPlaying|length }}</a>
+                                    </span> {% if  game.usersPlaying|length <= 1 %} Joueur {% else %} Joueurs {% endif %}
                                 </p>
                             </div>
                         </div>

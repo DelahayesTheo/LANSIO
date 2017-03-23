@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}"/>
+{% endblock %}
+{% block body %}
+    {{ render(controller('UserBundle:Nav:navController', {"path" : "USER"})) }}
+    <div class="container-fluid">
+        <div class="row">
+            {% include 'ParticipantBundle:Component:sideMenu.html.twig' %}
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+                <h1>Liste des jeux :</h1>
+
+                <section class="mx-auto row text-center offset-1 col-lg-10">
+                    <table class="table table-hover table-striped table-bordered">
+                        <thead>
+                        <td><b>Joueurs</b></td>
+                        </thead>
+
+                        {% for user in game.usersPlaying %}
+                            <tr>
+                                <td>{{ user.username }} ( {{ user.firstName }} {{ user.lastName }}
+                                    ) {% if user.cohort is not null %}- {{ user.cohort }}{% endif %}</td>
+                            </tr>
+                        {% endfor %}
+                        {% for guest in game.guestsPlaying %}
+                            <tr>
+                                <td>{{ guest.firstName }} {{ guest.lastName }} ( Invite )</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    {% if path == 'invite' %}
+                        <a href="{{ path("user_guest_game") }}" class="btn btn-primary">Retour</a>
+                    {% else %}
+                        <a href="{{ path("user_game_dashboard") }}" class="btn btn-primary">Retour</a>
+                    {% endif %}
+                </section>
+            </main>
+        </div>
+    </div>
+{% endblock %}
