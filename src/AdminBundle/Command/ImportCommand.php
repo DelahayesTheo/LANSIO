@@ -79,7 +79,7 @@ class ImportCommand extends ContainerAwareCommand
                     'text/html'
                 );
             $this->getContainer()->get('mailer')->send($message);
-            
+
             if (($i % $batchSize) === 0) {
                 // Advancing for progress display on console
                 $progress->advance($batchSize);
