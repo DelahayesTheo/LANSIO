@@ -1,12 +1,9 @@
 <div class="col-lg-2"></div>
-<a class="col-lg-2 linkGuest {% if currentUrl == 'HOME' %}linkActive{% endif %}" href="{{ path('user_guest') }}">
-    Accueil
+<a class="col-lg-2  linkGuest {% if currentUrl == 'HOME' %}linkActive{% endif %}" href="{{ path('user_guest') }}">
+    Informations
 </a>
 <a class="col-lg-2 linkGuest {% if currentUrl == 'GAME' %}linkActive{% endif %}" href="{{ path('user_guest_game') }}">
     Jeux
-</a>
-<a class="col-lg-2 linkGuest {% if currentUrl == 'EQUIPMENT' %}linkActive{% endif %}" href="#">
-    Equipement <br/>(pas encore dispo)
 </a>
 <a class="col-lg-2 linkGuest linkDelete" href="#" onclick="deleteGuest({{ invite.id }}); return false">
     Supprimer

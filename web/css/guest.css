@@ -46,6 +46,27 @@ body {
     margin-right: 1rem;
 }
 
+.primary-div {
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.squaredThree {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 1rem;
+}
+
+.linkGuest {
+    border: 1px solid #fff;
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background-color: #2C2F33;
+    color: #fff;
+    padding: 1rem 0 1rem 0;
+    text-align: center;
+    border-radius: 5px;
+}
+
 .form-guest button {
     font-size: 1.3rem;
     margin-bottom: 8rem;
@@ -61,29 +82,19 @@ body {
     color: #2C2F33;
 }
 
-.linkGuest {
-    font-size: 1.5rem;
-    text-align: center;
-    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
-    padding: 1.5rem 0 1.5rem 0;
-    border: 2px solid #7289DA;
-    border-radius: 10px;
-    background-color: #2C2F33;
-    display: block;
-    color: #fff;
-}
-
 .linkActive {
+    border: 1px solid #fff;
     background-color: #7289D1;
 }
 
 .linkGuest:hover, .linkGuest:focus {
     text-decoration: none;
-    background-color: #7289D1;
+    background-color: #2C2F33;
 }
 
-.linkDelete:hover, .linkDelete:hover {
+.linkDelete:hover, .linkDelete:focus {
     text-decoration: none;
+    color: #fff;
     background-color: red;
 }
 

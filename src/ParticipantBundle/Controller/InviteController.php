@@ -3,6 +3,7 @@
 namespace ParticipantBundle\Controller;
 
 use AdminBundle\Entity\Game;
+use UserBundle\Form\Type\InviteRequiredEquipmentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -20,7 +21,7 @@ class InviteController extends Controller
      *     name="user_guest")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this
             ->getDoctrine()
@@ -33,8 +34,19 @@ class InviteController extends Controller
 
         $invite = $user->getInvite();
 
+        $form = $this->createForm(new InviteRequiredEquipmentType(), $invite);
+
+        $form->handleRequest($request);
+        if ($form->isValid() && $form->isSubmitted()) {
+            $em->flush();
+            $this->addFlash(
+                'notice',
+                'Les informations de votre invite ont ete enregistres'
+            );
+        }
         return $this->render('ParticipantBundle:Guest:index.html.twig', array(
-            "invite" => $invite
+            "invite" => $invite,
+            "form" => $form->createView()
         ));
     }
 

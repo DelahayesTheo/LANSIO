@@ -4,18 +4,66 @@
 {% endblock %}
 {% block body %}
     {{ render(controller('UserBundle:Nav:navController', {"path" : "USER"})) }}
-<a class="row">
     {% include 'ParticipantBundle:Component:sideMenu.html.twig' %}
     <main class="col-sm-10 offset-sm-2 col-md-10 offset-md-2 pt-3">
         <h1 class="col-lg-4 titleGuest">VOTRE INVITE {{ invite.firstName|upper }} {{ invite.lastName|upper }}:</h1>
         <section class="mx-auto row ">
             {% include 'ParticipantBundle:Guest:menu.html.twig' with {'currentUrl' : 'HOME'} %}
+
+            <div class="container primary-div">
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {{ form_widget(form.needScreen, {'attr' : {'class' : 'squaredThree'}}) }}
+                                Ecran
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {{ form_widget(form.needMouse, {'attr' : {'class' : 'squaredThree'}}) }}
+                                Souris
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 mx-auto">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {{ form_widget(form.needKeyboard, {'attr' : {'class' : 'squaredThree'}}) }}
+                                Clavier
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {{ form_widget(form.needNetworkCable, {'attr' : {'class' : 'squaredThree'}}) }}
+                                Câble réseau
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {{ form_widget(form.isEating, {'attr' : {'class' : 'squaredThree'}}) }}
+                                Il mange à la LAN
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mx-auto">
+                        {{ form_widget(form.save, {'attr' : {'class' : 'btn'}, 'label' :"Enregistré"}) }}
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+            </div>
         </section>
     </main>
-    </div>
-    {% endblock %}
-    {% block scripts %}
-    {% for message in app.session.flashbag.get('notice') %}
-        $.notify("{{ message }}", "success");
-    {% endfor %}
 {% endblock %}
+    {% block scripts %}
+        {% for message in app.session.flashbag.get('notice') %}
+            $.notify("{{ message }}", "success");
+        {% endfor %}
+    {% endblock %}

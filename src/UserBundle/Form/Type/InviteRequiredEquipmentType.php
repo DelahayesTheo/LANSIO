@@ -1,5 +1,5 @@
 <?php
-namespace ParticipantBundle\Form\Type;
+namespace UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use UserBundle\Entity\Invite;
 
-class InviteRequiredEquipment extends AbstractType
+class InviteRequiredEquipmentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -17,6 +17,7 @@ class InviteRequiredEquipment extends AbstractType
             ->add('needMouse', CheckboxType::class, array('required' => false))
             ->add('needKeyboard', CheckboxType::class, array('required' => false))
             ->add('needNetworkCable', CheckboxType::class, array('required' => false))
+            ->add('isEating', CheckboxType::class, array('required' => false))
             ->add('save', SubmitType::class)
             ->getForm();
     }
