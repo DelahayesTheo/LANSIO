@@ -35,6 +35,10 @@
                                             {{ role }} &nbsp
                                         {% endfor %}
                                     </td>
+                                    <td>
+                                        <a href="{{ path("admin_reset_user_password", {"id" : user.id}) }}"
+                                           class="btn btn-primary">Reset password</a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </table>

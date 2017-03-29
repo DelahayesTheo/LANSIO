@@ -3,6 +3,8 @@
 namespace AdminBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Entity\User;
+use UserBundle\Form\Type\ResetPasswordType;
 use UserBundle\Form\Type\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -61,6 +63,35 @@ class UserController extends Controller
         return $this->render('AdminBundle:User:add.html.twig', array(
             'form' => $form->createView(),
             'successMessage' => $successMessage
+        ));
+    }
+
+    /**
+     * @Route("/reset-password/{id}/",
+     *     name="admin_reset_user_password")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function resetPasswordAction(Request $request, User $id)
+    {
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+
+        $form = $this->createForm(new ResetPasswordType(), $id);
+
+        $form->handleRequest($request);
+        if ($form->isValid() && $form->isSubmitted()) {
+            $em->flush();
+
+            $this->addFlash(
+                'notice',
+                'Le mot de passe a été changé'
+            );
+            return $this->redirectToRoute('admin_list_user');
+        }
+
+        return $this->render('AdminBundle:User:resetPassword.html.twig', array(
+            'form' => $form->createView()
         ));
     }
 }
