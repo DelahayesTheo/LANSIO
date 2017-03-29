@@ -21,8 +21,10 @@ class NeededEquipment extends Controller
 
         $userRepository = $em->getRepository("UserBundle:User");
         $equipmentNeeded = $userRepository->findSumEquipment();
+        $equipmentNeededGuest = $userRepository->findSumEquipmentGuest();
         return $this->render('AdminBundle:EquipmentNeeded:index.html.twig', array(
-            "equipmentNeeded" => $equipmentNeeded
+            "equipmentNeeded" => $equipmentNeeded,
+            "equipmentNeededGuest" => $equipmentNeededGuest
         ));
     }
 }

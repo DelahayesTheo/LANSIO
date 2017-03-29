@@ -22,10 +22,10 @@
                             </thead>
 
                             <tr>
-                                <td>{{ equipmentNeeded.nbScreenNeeded }}</td>
-                                <td>{{ equipmentNeeded.nbMouseNeeded }}</td>
-                                <td>{{ equipmentNeeded.nbKeyboardNeeded }}</td>
-                                <td>{{ equipmentNeeded.nbNetworkCableNeeded }}</td>
+                                <td>{{ equipmentNeeded.nbScreenNeeded + equipmentNeededGuest.nbScreenNeeded }}</td>
+                                <td>{{ equipmentNeeded.nbMouseNeeded + equipmentNeededGuest.nbMouseNeeded }}</td>
+                                <td>{{ equipmentNeeded.nbKeyboardNeeded + equipmentNeededGuest.nbKeyboardNeeded }}</td>
+                                <td>{{ equipmentNeeded.nbNetworkCableNeeded + equipmentNeededGuest.nbNetworkCableNeeded }}</td>
                             </tr>
                         </table>
                     </div>

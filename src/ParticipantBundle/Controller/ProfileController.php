@@ -29,7 +29,7 @@ class ProfileController extends Controller
             $em->flush();
             $this->addFlash(
                 'notice',
-                'Votre choix à été prix en compte'
+                'Votre choix à été pris en compte'
             );
         }
         return $this->render('ParticipantBundle:Profile:profile.html.twig', array(
