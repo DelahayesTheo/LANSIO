@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/anonymous.css') }}"/>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <main class="col-sm-12 pt-3">
+            <h1 class="col-lg-2">Listes des participants</h1>
+            <section class="mx-auto col-lg-8">
+                <h3>Participants :</h3>
+                <table class="table table-hover table-striped table-bordered text-center">
+                    <thead>
+                    <td><b>Nom</b></td>
+                    <td><b>Cohort</b></td>
+                    </thead>
+
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.firstName }} {{ user.lastName }}</td>
+                            <td>{{ user.cohort }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <h3>Invites :</h3>
+                <table class="table table-hover table-striped table-bordered text-center">
+                    <thead>
+                    <td><b>Nom</b></td>
+                    </thead>
+
+                    {% for invite in invites %}
+                        <tr>
+                            <td>{{ invite.firstName }} {{ invite.lastName }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </section>
+        </main>
+    </div>
+{% endblock %}

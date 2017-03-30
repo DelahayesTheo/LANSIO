@@ -21,7 +21,8 @@ class AppKernel extends Kernel
             new UserBundle\UserBundle(),
             new AdminBundle\AdminBundle(),
             new ParticipantBundle\ParticipantBundle(),
-            new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle()
+            new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle(),
+            new AnonymousBundle\AnonymousBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
