@@ -26,3 +26,21 @@ function alertOnDelete(path, id)
     });
     return false;
 }
+
+function joinEvent(id) {
+    swal({
+            title: "Participer a l'evenement ?",
+            type: "info",
+            showCancelButton: "true",
+            confirmButtonColor: 'green',
+            confirmButtonText: "Rejoindre",
+            cancelButtonText: "Retour"
+        },
+        function () {
+            var route = Routing.generate("anonymous_event_join", {id: id});
+            $.get(route, function (data) {
+                window.location.reload()
+            });
+        });
+    return false;
+}

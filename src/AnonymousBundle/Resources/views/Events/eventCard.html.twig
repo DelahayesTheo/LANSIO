@@ -1,0 +1,23 @@
+<div class="row col-lg-10 mx-auto card-event">
+    <div class="col-lg-3">
+        {% if event.concernGame %}
+            {% if event.game.pathToImg is not empty %}
+                {% set path = 'img/thumbnails/' ~  event.game.pathToImg %}
+                <img src="{{ asset(path) }}" class="img-event img-thumbnail">
+            {% else %}
+                <span class="txt-no-img">{{ event.game.name }}</span>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="col-lg-9">
+        <h4>{{ event.title }} : ({{ event.nbPlayers }} / {{ event.nbPlayersMax }}
+            ) {% if event.nbPlayers == event.nbPlayersMax %}<span class="text-danger">PLEIN</span>{% endif %}</h4>
+        <br/>
+        <span class="text-event-card">{{ event.comment }}</span>
+        <span class="close-event"><a
+                    href="{{ path('anonymous_close_event', {"id" : event.id}) }}">Fermer l'evenement</a></span>
+    </div>
+
+    <a href="#" onclick="joinEvent({{ event.id }}); return false"><i class="fa fa-3x fa-check-square join-event"
+                                                                     aria-hidden="true"></i></a>
+</div>

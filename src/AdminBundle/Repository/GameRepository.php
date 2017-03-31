@@ -60,4 +60,16 @@ class GameRepository extends EntityRepository
 
         return $query->getQuery()->getResult();
     }
+
+    public function queryFindAllGame()
+    {
+        $em = $this
+            ->getEntityManager();
+
+        $query = $em->createQueryBuilder()
+            ->select('g')
+            ->from('AdminBundle:Game', 'g');
+
+        return $query;
+    }
 }

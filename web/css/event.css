@@ -1,0 +1,108 @@
+body {
+    padding-top: 50px;
+    background-color: #2C2F33;
+}
+
+/*
+ * Typography
+ */
+main {
+    color: #fff;
+}
+
+main h1 {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    border-bottom: 4px solid #7289DA;
+    text-align: left;
+    padding-bottom: 1rem;
+    margin-left: 3rem;
+}
+
+.add-event {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.join-event {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: black;
+}
+
+.txt-no-img {
+    display: block;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.img-event {
+    height: 14rem;
+}
+
+.card-event {
+    background-color: #7289D1;
+    margin-top: 20px;
+    box-shadow: 4px 3px 0 #1d1e1f;
+    border-radius: 5px;
+}
+
+.card-event h4 {
+    display: inline-block;
+    margin-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    border-bottom: 3px solid black;
+}
+
+.text-event-card {
+    display: block;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.close-event a, a:hover, a:focus {
+    text-decoration: underline;
+    color: #fff;
+}
+
+.form-event {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.form-input-event {
+    background-color: #2C2F33;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #7289D1;
+    border-radius: 0;
+    color: #fff;
+}
+
+.form-input-text:focus, .form-input-text, .form-input-text:hover {
+    background-color: #2C2F33;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #7289D1;
+    border-radius: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.form-guest .form-check-label {
+    margin-top: 1rem;
+}
+
+.form-guest .form-check-label input {
+    margin-right: 1rem;
+}
+
+.navbar {
+    background-color: #1d1e1f;
+}
