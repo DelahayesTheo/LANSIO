@@ -40,7 +40,8 @@ Et enfin éxécuter la commande :
 php app/console server:run
 ```
 
-PS : Le site à été créé sur le vif, des sections 'en construction' ne sont pas disponibles car je n'ai pas eu le temps de les implémenter à temps. Les jaquettes sont aussi indisponibles du fait du non-changement de la commande :
+# PS : 
+Le site à été créé sur le vif, des sections 'en construction' ne sont pas disponibles car je n'ai pas eu le temps de les implémenter à temps. Les jaquettes sont aussi indisponibles du fait du non-changement de la commande :
 ```
 php app/console generate:games
 ```
